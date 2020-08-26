@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Surefire suite" duration-ms="28" started-at="2020-08-19T21:35:17Z" finished-at="2020-08-19T21:35:17Z">
+  <suite started-at="2020-08-26T13:25:56Z" name="Surefire suite" finished-at="2020-08-26T13:26:13Z" duration-ms="16291">
     <groups>
     </groups>
-    <test name="Surefire test" duration-ms="28" started-at="2020-08-19T21:35:17Z" finished-at="2020-08-19T21:35:17Z">
+    <test started-at="2020-08-26T13:25:56Z" name="Surefire test" finished-at="2020-08-26T13:26:13Z" duration-ms="16291">
       <class name="io.ctdev.AppTest">
-        <test-method status="PASS" signature="shouldAnswerWithTrue()[pri:0, instance:io.ctdev.AppTest@67b64c45]" name="shouldAnswerWithTrue" duration-ms="8" started-at="2020-08-19T21:35:17Z" finished-at="2020-08-19T21:35:17Z">
+        <test-method signature="shouldAnswerWithTrue()[pri:0, instance:io.ctdev.AppTest@3891771e]" started-at="2020-08-26T13:25:56Z" name="shouldAnswerWithTrue" finished-at="2020-08-26T13:26:13Z" duration-ms="16253" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- shouldAnswerWithTrue -->

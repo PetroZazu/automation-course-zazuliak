@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: io.ctdev.AppTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.42 s - in io.ctdev.AppTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 16.761 s - in io.ctdev.AppTest
