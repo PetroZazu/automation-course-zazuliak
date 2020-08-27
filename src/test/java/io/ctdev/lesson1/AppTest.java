@@ -1,7 +1,8 @@
-package io.ctdev;
+package io.ctdev.lesson1;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
@@ -14,4 +15,5 @@ public class AppTest {
         Thread.sleep(10000);
         driver.quit();
     }
+
 }
