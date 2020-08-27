@@ -2,15 +2,24 @@ package io.ctdev.lesson2.TestsUsingTestNG;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class VerifySalesforceTitle {
     WebDriver driver;
+    ChromeOptions options;
+
+    @BeforeSuite
+    public void setGooglePreStartOptions() {
+        options = new ChromeOptions();
+        options.addArguments("--start-fullscreen");
+        driver = new ChromeDriver(options);
+
+    }
 
     @BeforeClass
     public void goToTestWebPage() {
-        driver = new ChromeDriver();
         driver.get("https://test.salesforce.com/");
     }
 
