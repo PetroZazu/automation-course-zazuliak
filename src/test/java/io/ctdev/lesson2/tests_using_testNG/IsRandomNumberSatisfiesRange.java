@@ -1,4 +1,4 @@
-package io.ctdev.lesson2.TestsUsingTestNG;
+package io.ctdev.lesson2.tests_using_testNG;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
