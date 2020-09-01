@@ -17,20 +17,20 @@ public class LocatorsForProfileEditPopUp {
     private String PhoneNumberCss
             = "div[class*='ownUserProfile_container'] input[name=phoneNumber]";
     private String PhoneNumberXpath
-            = "//div[contains(@class, 'ownUserProfile_container')]//input[contains(@name, 'namephoneNumber')]";
-    // Same logic as for the first one
+            = "//div[contains(@class, 'ownUserProfile_container')]//input[contains(@name, 'phoneNumber')]";
+    // знаходжу основний контейнер (ownUserProfile_container) і в даному контейнері шукаю елемент 'input' де name=phoneNumber
 
     private String positionCss
             = "div[class*='ownUserProfile_container'] input[name=position]";
     private String positionXpath
             = "//div[contains(@class, 'ownUserProfile_container')]//input[contains(@name, 'position')]";
-    // Same logic as for the first one
+
 
     private String departmentCss
             = "div[class*='ownUserProfile_container'] input[name=department]";
     private String departmentXpath
             = "//div[contains(@class, 'ownUserProfile_container')]//input[contains(@name, 'department')]";
-    // Same logic as for the first one
+
 
 
 
