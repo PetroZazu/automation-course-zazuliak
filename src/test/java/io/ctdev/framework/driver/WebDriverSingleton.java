@@ -1,5 +1,6 @@
-package io.ctdev.framework;
+package io.ctdev.framework.driver;
 
+import io.ctdev.framework.config.TestConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,8 +15,8 @@ public class WebDriverSingleton {
 
     public static WebDriver getDriver() {
         if (driver == null) {
-            switch (System.getProperty("browser")) {
-                case ("Firefox"): {
+            switch (TestConfig.cfg.browser()) {
+                case ("firefox"): {
                     WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver();
                     break;

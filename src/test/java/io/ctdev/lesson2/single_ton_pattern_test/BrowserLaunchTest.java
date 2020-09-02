@@ -1,15 +1,12 @@
 package io.ctdev.lesson2.single_ton_pattern_test;
 
-import io.ctdev.framework.WebDriverSingleton;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static io.ctdev.framework.WebDriverSingleton.getDriver;
+import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
 public class BrowserLaunchTest {
     WebDriver driver;

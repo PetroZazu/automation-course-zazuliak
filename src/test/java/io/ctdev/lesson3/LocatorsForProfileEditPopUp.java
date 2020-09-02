@@ -1,37 +1,41 @@
 package io.ctdev.lesson3;
 
 public class LocatorsForProfileEditPopUp {
+    private String cssPathToProfileContainer = "div[class*='ownUserProfile_container']";
+    private String xPathToProfileContainer = "//div[contains(@class, 'ownUserProfile_container')]";
+
     private String nameCss
-            = "div[class*='ownUserProfile_container'] input[name=name]";
+            = cssPathToProfileContainer + " input[name=name]";
     private String nameXpath
-            = "//div[contains(@class, 'ownUserProfile_container')]//input[contains(@name, 'name')]";
-   // знаходжу основний контейнер (ownUserProfile_container) і в даному контейнері шукаю поле 'input'
+            = xPathToProfileContainer + "//input[contains(@name, 'name')]";
+    // знаходжу основний контейнер (ownUserProfile_container) і в даному контейнері шукаю поле 'input'
 
     private String nicknameCss
-            = "div[class*='ownUserProfile_container'] input[name='login'][class*='editUserProfile']";
+            = cssPathToProfileContainer + " input[name='login'][class*='editUserProfile']";
     private String nicknameXpath
-            = "//div[contains(@class, 'ownUserProfile_container')]//input[contains(@name, 'login')and contains(@class, 'edit')]";
+            = xPathToProfileContainer + "//input[contains(@name, 'login') and contains(@class, 'edit')]";
     // знаходжу основний контейнер (ownUserProfile_container) і в даному контейнері шукаю поле 'login' яке aka 'nickname'
     // також я вирішив добавити атрибут клас в пошук для елементу текстового поля
 
     private String PhoneNumberCss
-            = "div[class*='ownUserProfile_container'] input[name=phoneNumber]";
+            = cssPathToProfileContainer + " input[name=phoneNumber]";
     private String PhoneNumberXpath
-            = "//div[contains(@class, 'ownUserProfile_container')]//input[contains(@name, 'phoneNumber')]";
-    // знаходжу основний контейнер (ownUserProfile_container) і в даному контейнері шукаю елемент 'input' де name=phoneNumber
+            = xPathToProfileContainer + "//input[contains(@name, 'phoneNumber')]";
 
     private String positionCss
-            = "div[class*='ownUserProfile_container'] input[name=position]";
+            = cssPathToProfileContainer + " input[name=position]";
     private String positionXpath
-            = "//div[contains(@class, 'ownUserProfile_container')]//input[contains(@name, 'position')]";
-
+            = xPathToProfileContainer + "//input[contains(@name, 'position')]";
 
     private String departmentCss
-            = "div[class*='ownUserProfile_container'] input[name=department]";
+            = cssPathToProfileContainer + " input[name=department]";
     private String departmentXpath
-            = "//div[contains(@class, 'ownUserProfile_container')]//input[contains(@name, 'department')]";
+            = xPathToProfileContainer + "//input[contains(@name, 'department')]";
 
-
+    private String cancelButtonCss
+            = cssPathToProfileContainer + " button[type=button]";
+    private String cancelButtonXpath
+            = xPathToProfileContainer + "//button[contains(@type, 'button') and contains(.,'Cancel')]";
 
 
 }
