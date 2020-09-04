@@ -1,4 +1,4 @@
-package io.ctdev.lesson2.tests_using_testNG;
+package io.ctdev.lesson2.tests;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Factory;

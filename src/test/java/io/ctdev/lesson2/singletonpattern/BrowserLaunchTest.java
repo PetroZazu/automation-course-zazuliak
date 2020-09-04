@@ -1,4 +1,4 @@
-package io.ctdev.lesson2.single_ton_pattern_test;
+package io.ctdev.lesson2.singletonpattern;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
