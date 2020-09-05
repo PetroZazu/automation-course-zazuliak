@@ -34,16 +34,23 @@ public class JuiceShopGeneralTest {
     }
 
     @Test
-    public void getAttributeTest () {
+    public void getAttributeTest() {
         WebElement sideMunuButton = driver.findElement(By.xpath("//span[contains(@class,'mat-button-wrapper')]/mat-icon[contains(text(), 'menu')]"));
         System.out.println("side menu button 'Class' attribute content is: " + sideMunuButton.getAttribute("class"));
     }
 
     @Test
-    public void visibilityTest () throws InterruptedException {
+    public void visibilityTest() throws InterruptedException {
         WebElement itemsPerPageCounter = driver.findElement(By.xpath("//div[contains(@class, 'mat-paginator-outer-container')]//div[contains(text(), 'Items per page')]"));
         Thread.sleep(3000);
-        itemsPerPageCounter.isDisplayed(); 
+        System.out.println("Is itemsPerPageCounter displayed on the page? " + itemsPerPageCounter.isDisplayed());
+    }
+
+    @Test
+    public void getTextMethodTest() {
+        WebElement mainSiteBunnerText = driver.findElement(By.xpath("//button[@aria-label='Back to homepage']/span/span"));
+        System.out.println("Site Bunner Logo Text is: " + mainSiteBunnerText.getText());
+
     }
 
 
