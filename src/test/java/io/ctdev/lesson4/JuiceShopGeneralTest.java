@@ -39,6 +39,13 @@ public class JuiceShopGeneralTest {
         System.out.println("side menu button 'Class' attribute content is: " + sideMunuButton.getAttribute("class"));
     }
 
+    @Test
+    public void visibilityTest () throws InterruptedException {
+        WebElement itemsPerPageCounter = driver.findElement(By.xpath("//div[contains(@class, 'mat-paginator-outer-container')]//div[contains(text(), 'Items per page')]"));
+        Thread.sleep(3000);
+        itemsPerPageCounter.isDisplayed(); 
+    }
+
 
     @AfterClass
     public void afterClass() {
