@@ -7,31 +7,34 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class WebDriverSingleton {
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     private WebDriverSingleton() {
 
     }
 
     public static WebDriver getDriver() {
-        if (driver == null) {
+        if (driver.get() == null) {
             switch (TestConfig.cfg.browser()) {
                 case ("firefox"): {
                     WebDriverManager.firefoxdriver().setup();
-                    driver = new FirefoxDriver();
+                    driver.set(new FirefoxDriver());
                     break;
                 }
                 default: {
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    driver.set(new ChromeDriver());
                 }
             }
-            driver.manage().window().maximize();
+            driver.get().manage().window().maximize();
         }
-        return driver;
+        return driver.get();
     }
 
-    public static void closeDriver() {
-        driver.quit();
+    public static void closeDriver()
+    {
+        if (driver.get() != null)
+        driver.get().close();
+        driver.remove();
     }
 }

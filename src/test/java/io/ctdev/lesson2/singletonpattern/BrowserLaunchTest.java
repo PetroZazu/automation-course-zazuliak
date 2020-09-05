@@ -18,9 +18,9 @@ public class BrowserLaunchTest {
 
     @Test
     public void openWebPage() throws InterruptedException {
-        driver.get("https://test.salesforce.com/");
+        driver.get("https://www.google.com/");
         Thread.sleep(5000);
-        Assert.assertEquals(driver.getTitle(), "Login | Salesforce");
+        Assert.assertEquals(driver.getTitle(), "Google");
 
     }
 
