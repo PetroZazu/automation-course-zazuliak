@@ -53,6 +53,31 @@ public class JuiceShopGeneralTest {
 
     }
 
+    @Test
+    public void sendKeysInToTheSignUpFieldsTest() throws InterruptedException {
+        // 1) find account button and click
+        WebElement accountButton = driver.findElement(By.xpath("//button[contains(@id, 'navbarAccount')]"));
+        accountButton.click();
+        Thread.sleep(1000);
+
+        // 2) In the opened drop down, find and click on the login button
+        WebElement loginButton = driver.findElement(By.xpath("//button[contains(@id, 'navbarLoginButton')]"));
+        loginButton.click();
+        Thread.sleep(1000);
+
+
+        // 3) Find button to create a new account and click on it
+        WebElement notYetACustomer = driver.findElement(By.cssSelector("div#newCustomerLink"));
+        notYetACustomer.click();
+        Thread.sleep(1000);
+
+        // 4) Find 'Email' text box and add some text
+        WebElement regEmailTextBox = driver.findElement(By.xpath("//input[contains(@id, 'emailControl')]"));
+        regEmailTextBox.sendKeys("testmail@yopmail.com");
+        Thread.sleep(5000);
+
+    }
+
 
     @AfterClass
     public void afterClass() {
