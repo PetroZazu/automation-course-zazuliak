@@ -1,4 +1,4 @@
-package io.ctdev.lesson4.HomeWork;
+package io.ctdev.lesson4.juiceshophw;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
@@ -14,7 +14,7 @@ import java.util.List;
 import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
 import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
-public class JuiceShopUserSignUpTest {
+public class UserSignUpTest {
     WebDriver driver;
     private int iteration;
     private String email;

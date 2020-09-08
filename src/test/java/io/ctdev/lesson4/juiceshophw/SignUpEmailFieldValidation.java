@@ -1,18 +1,16 @@
-package io.ctdev.lesson4.HomeWork;
+package io.ctdev.lesson4.juiceshophw;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.*;
-
-import java.util.List;
 
 import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
 import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
-public class JuiceShopSignUpEmailFieldValidation {
+public class SignUpEmailFieldValidation {
+
     WebDriver driver;
     private String invalidEmail = "zazazaazazaza%gmail.com";
     private String password = "@z$rt&12!!azazaza";
@@ -39,13 +37,14 @@ public class JuiceShopSignUpEmailFieldValidation {
     }*/
 
     @Test
-    public void verifyAbilityToCreateNewAccount() throws InterruptedException {
+    public void emailFieldValidation() throws InterruptedException {
         openRegistrationPage();
         fillAllFieldsExceptOfEmail();
         verifyThatRegisterButtonIsNotActive();
         verifyErrorWhenEmailFieldBlank();
         fillEmailFieldWithInvalidEmail();
         verifyErrorWhenEmailInvalid();
+        verifyThatRegisterButtonIsNotActive();
     }
 
     public void openRegistrationPage() {
