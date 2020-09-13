@@ -1,9 +1,11 @@
 package io.ctdev.lesson4.juiceshophw;
 
+import io.ctdev.framework.config.TestConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -13,9 +15,11 @@ import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
 public class SignUpPasswordFieldsValidation {
 
+    SignUpEmailFieldValidation signUpEmailFieldValidation = new SignUpEmailFieldValidation();
     WebDriver driver;
 
-    private String invalidEmail = "zazazaazazaza@yopmail.com";
+    private String email = "zazazaazazaza@yopmail.com";
+    private String validPassword = "Azerty12!!";
     private String password4symbols = "1234";
     private String password21symbols = "123qwe123qwe123qwe123";
     private String password5symbols = "12345";
@@ -25,7 +29,7 @@ public class SignUpPasswordFieldsValidation {
     public void beforeClass() {
         driver = getDriver();
         //Open Web Page
-        driver.get("http://18.217.145.6");
+        driver.get(TestConfig.cfg.juiceShopProd());
         //Useing cookies adjustment, banner and cookies consent pop-ups will be closed
         driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
         driver.manage().addCookie(new Cookie("welcomebanner_status", "dismiss"));
@@ -33,106 +37,153 @@ public class SignUpPasswordFieldsValidation {
     }
 
     @Test
-    public void invalidPasswordOnSignUpPageTest() throws InterruptedException {
+    public void verifyPasswordIsRequired() throws InterruptedException {
+        System.out.println("verifyPasswordIsRequired() test");
         openRegistrationPage();
-        fillAllFieldsExceptOfPassword();
-        verifyThatRegisterButtonIsNotActive();
-        clearPasswordField();
-        verifyErrorMessageWhenPasswordFieldBlank();
-
-        //next test is related to boundary value test technique:
-        fillPasswordFieldWithTooShortPassword();
-        verifyErrorMessageAboutWrongPasswordLength();
-
-        fillPasswordFieldWithTooLongPassword();
-        verifyErrorMessageAboutWrongPasswordLength();
-
-        fillPasswordFieldWithMaxLengthPassword();
-        verifyMessageWhenPasswordHasCorrectLength();
-
-        fillPasswordFieldWithMinLengthPassword();
-        verifyMessageWhenPasswordHasCorrectLength();
-
-        
-
+        fillAllFieldsExceptOfPasswords();
+        checkErrorMessageWhenPasswordFieldBlank();
+        checkThatRegisterButtonIsNotActive();
     }
 
-    public void fillAllFieldsExceptOfPassword() throws InterruptedException {
-        System.out.println("fill email field with valid email");
-        driver.findElement(By.cssSelector("#emailControl")).sendKeys(invalidEmail);
+    @Test
+    public void verifyTooShortPassword() throws InterruptedException {
+        System.out.println("verifyTooShortPassword() test");
+        openRegistrationPage();
+        fillAllFieldsExceptOfPasswords();
+        System.out.println("Fill 'Password' Field with password that has 4 symbols");
+        fillPasswordField(password4symbols);
+        checkErrorMessageAboutWrongPasswordLength();
+        checkThatRegisterButtonIsNotActive();
+    }
 
+    @Test
+    public void verifyTooLongPassword() throws InterruptedException {
+        System.out.println("verifyTooLongPassword() test");
+        openRegistrationPage();
+        fillAllFieldsExceptOfPasswords();
+        System.out.println("Fill 'Password' Field with password that has 21 symbols");
+        fillPasswordField(password21symbols);
+        checkErrorMessageAboutWrongPasswordLength();
+        checkThatRegisterButtonIsNotActive();
+    }
+
+    @Test
+    public void verifyMaxAllowedPasswordLength() throws InterruptedException {
+        System.out.println("verifyMaxAllowedPasswordLength() test");
+        openRegistrationPage();
+        fillAllFieldsExceptOfPasswords();
+        System.out.println("Fill 'Password' Field with password that has 20 symbols");
+        fillPasswordField(password20symbols);
+        checkMessageWhenPasswordHasCorrectLength();
+        checkThatRegisterButtonIsNotActive();
+    }
+
+    @Test
+    public void verifyMinAllowedPasswordLength() throws InterruptedException {
+        System.out.println("verifyMinAllowedPasswordLength() test");
+        openRegistrationPage();
+        fillAllFieldsExceptOfPasswords();
+        System.out.println("Fill 'Password' Field with password that has 5 symbols");
+        fillPasswordField(password5symbols);
+        checkMessageWhenPasswordHasCorrectLength();
+        checkThatRegisterButtonIsNotActive();
+    }
+
+    @Test
+    public void verifyRepeatPasswordIsRequired() throws InterruptedException {
+        System.out.println("verifyRepeatPasswordIsRequired() test");
+        openRegistrationPage();
+        fillAllFieldsExceptOfPasswords();
+        System.out.println("Fill 'Password' Field with valid password");
+        fillPasswordField(validPassword);
+        checkErrorMessageWhenRepeatPasswordFieldBlank();
+        checkThatRegisterButtonIsNotActive();
+    }
+
+    @Test
+    public void verifyErrorWhenPasswordsDoNotMatch() throws InterruptedException {
+        System.out.println("verifyErrorWhenPasswordsDoNotMatch() test");
+        openRegistrationPage();
+        fillAllFieldsExceptOfPasswords();
+        System.out.println("Fill 'Password' Field with password:'Azerty12!!' ");
+        fillPasswordField(validPassword);
+        System.out.println("Fill 'Repeat Password' Field with password:'12345' ");
+        fillRepeatPasswordField(password5symbols);
+        checkErrorAppearsWhenPasswordsDoNotMatch();
+        checkThatRegisterButtonIsNotActive();
+    }
+
+    public void fillAllFieldsExceptOfPasswords() throws InterruptedException {
+        System.out.println("fill email field with valid email");
+        driver.findElement(By.cssSelector("#emailControl")).sendKeys(email);
         Thread.sleep(1000);
         System.out.println("Click on the 'Security Question drop down list");
         driver.findElement(By.xpath("//mat-select")).click();
-
-        System.out.println("Click on the option");
+        System.out.println("Choose one of the options");
         driver.findElement(By.xpath("//mat-option")).click();
-
         System.out.println("Fill 'Answer' field with text");
         driver.findElement(By.cssSelector("#securityAnswerControl")).sendKeys("SecurityText:)");
     }
 
-    public void fillPasswordFieldWithTooShortPassword() {
-        System.out.println("Fill 'Password' Field with password that has 4 symbols");
-        clearPasswordField();
-        driver.findElement(By.cssSelector("#passwordControl")).sendKeys(password4symbols);
-        //just click out of the text box
-        driver.findElement(By.xpath("//h1[contains(text(), 'User Registration')]")).click();
+
+    public void fillPasswordField(String password) {
+        driver.findElement(By.cssSelector("#passwordControl")).sendKeys(password);
+        justClickOutOfTheTextBox();
     }
 
-    public void fillPasswordFieldWithTooLongPassword() {
-        System.out.println("Fill 'Password' Field with password that has 21 symbols");
-        clearPasswordField();
-        driver.findElement(By.cssSelector("#passwordControl")).sendKeys(password21symbols);
-        //just click out of the text box
-        driver.findElement(By.xpath("//h1[contains(text(), 'User Registration')]")).click();
+    public void fillRepeatPasswordField(String password) {
+        driver.findElement(By.cssSelector("#repeatPasswordControl")).sendKeys(password);
+        justClickOutOfTheTextBox();
     }
 
-    public void fillPasswordFieldWithMaxLengthPassword() {
-        System.out.println("Fill 'Password' Field with password that has 20 symbols");
-        clearPasswordField();
-        driver.findElement(By.cssSelector("#passwordControl")).sendKeys(password20symbols);
-        //just click out of the text box
-        driver.findElement(By.xpath("//h1[contains(text(), 'User Registration')]")).click();
-    }
-
-    public void fillPasswordFieldWithMinLengthPassword() {
-        System.out.println("Fill 'Password' Field with password that has 5 symbols");
-        clearPasswordField();
-        driver.findElement(By.cssSelector("#passwordControl")).sendKeys(password5symbols);
-        //just click out of the text box
-        driver.findElement(By.xpath("//h1[contains(text(), 'User Registration')]")).click();
-    }
 
     public void clearPasswordField() {
+        System.out.println("Click in the password text box, clear text and click out the text box");
         driver.findElement(By.cssSelector("#passwordControl")).click();
         driver.findElement(By.cssSelector("#passwordControl")).clear();
         driver.findElement(By.xpath("//h1[contains(text(), 'User Registration')]")).click();
-
     }
 
-    public void verifyErrorMessageWhenPasswordFieldBlank() throws InterruptedException {
-        System.out.println("Is error message about blank 'Password' field displayed?");
+    public void clearRepeatPasswordField() {
+        System.out.println("Click in the Repeat Password text box, clear text and click out the text box");
+        driver.findElement(By.cssSelector("#repeatPasswordControl")).click();
+        driver.findElement(By.cssSelector("#repeatPasswordControl")).clear();
+        driver.findElement(By.xpath("//h1[contains(text(), 'User Registration')]")).click();
+    }
+
+    public void checkErrorMessageWhenPasswordFieldBlank() {
+        //to trigger error, we need to click in the password text box, leave it empty and click out
         clearPasswordField();
-        Thread.sleep(1000);
+        System.out.println("Is error message about blank 'Password' field displayed?");
         System.out.println(driver.findElement(By.xpath("//mat-error[contains(text(), 'Please provide a password. ')]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//mat-error[contains(text(), 'Please provide a password. ')]")).isDisplayed());
     }
 
-    public void verifyErrorMessageWhenRepeatPasswordFieldBlank() {
+    public void checkErrorMessageWhenRepeatPasswordFieldBlank() throws InterruptedException {
+        //to trigger error, we need to click in the password text box, leave it empty and click out
+        clearRepeatPasswordField();
         System.out.println("Is error message about blank 'Repeat Password' field displayed?");
+        Thread.sleep(1000);
         System.out.println(driver.findElement(By.xpath("//mat-error[contains(text(), 'Please repeat your password.')]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//mat-error[contains(text(), 'Please repeat your password.')]")).isDisplayed());
     }
 
-    public void verifyErrorMessageAboutWrongPasswordLength() throws InterruptedException {
+    public void checkErrorMessageAboutWrongPasswordLength() {
         System.out.println("Is error message about wrong password length displayed?");
-        Thread.sleep(1000);
         System.out.println(driver.findElement(By.xpath("//mat-error[contains(text(), 'Password must be 5-20 characters long.')]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//mat-error[contains(text(), 'Password must be 5-20 characters long.')]")).isDisplayed());
     }
 
-    public void verifyMessageWhenPasswordHasCorrectLength() throws InterruptedException {
+    public void checkMessageWhenPasswordHasCorrectLength() {
         System.out.println("Is message about correct password length displayed?");
-        Thread.sleep(1000);
         System.out.println(driver.findElement(By.xpath("//em[contains(text(), 'Password must be 5-20 characters long.')]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//em[contains(text(), 'Password must be 5-20 characters long.')]")).isDisplayed());
+    }
+
+    public void checkErrorAppearsWhenPasswordsDoNotMatch() {
+        System.out.println("Is error message about 'Passwords do not match' displayed?");
+        System.out.println(driver.findElement(By.xpath("//mat-error[contains(text(), 'Passwords do not match')]")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//mat-error[contains(text(), 'Passwords do not match')]")).isDisplayed());
     }
 
     public void openRegistrationPage() {
@@ -149,11 +200,16 @@ public class SignUpPasswordFieldsValidation {
         notYetACustomerButton.click();
     }
 
-    public void verifyThatRegisterButtonIsNotActive() throws InterruptedException {
+    public void checkThatRegisterButtonIsNotActive() {
         System.out.println("Registration button is not active?: ");
-        Thread.sleep(1000);
         System.out.println(driver.findElement(By.xpath("//button[@id='registerButton' and @disabled='true']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.xpath("//button[@id='registerButton' and @disabled='true']")).isDisplayed());
     }
+
+    public void justClickOutOfTheTextBox() {
+        driver.findElement(By.xpath("//h1[contains(text(), 'User Registration')]")).click();
+    }
+
 
     @AfterClass
     public void afterClass() {

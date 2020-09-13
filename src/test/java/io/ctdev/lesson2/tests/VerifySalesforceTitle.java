@@ -31,6 +31,7 @@ public class VerifySalesforceTitle {
         Assert.assertEquals(actualTitle, expectedTitle, "tab title is not the same as expected tab title");
     }
 
+
     @AfterClass
     public void closeBrowser() throws InterruptedException {
         Thread.sleep(4000);

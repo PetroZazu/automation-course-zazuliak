@@ -9,5 +9,8 @@ public interface TestConfig extends Config {
 
     @DefaultValue("firefox")
     String browser();
+
+    @DefaultValue("http://18.217.145.6")
+    String juiceShopProd();
 }
 

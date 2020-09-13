@@ -1,5 +1,6 @@
 package io.ctdev.lesson4.juiceshophw;
 
+import io.ctdev.framework.config.TestConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
@@ -17,15 +18,21 @@ import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 public class UserSignUpTest {
     WebDriver driver;
     private int iteration;
-    private String email;
+    private String email = "pzzzzazuliak@yopmail.com";
     private String password = "@z$rt&12!!azazaza";
     private List<WebElement> errorsDisp;
+
+
+    public String getEmail() {
+        return email;
+    }
+
 
     @BeforeClass
     public void beforeClass() {
         driver = getDriver();
         //Open Web Page
-        driver.get("http://18.217.145.6");
+        driver.get(TestConfig.cfg.juiceShopProd());
         //Useing cookies adjustment, banner and cookies consent pop-ups will be closed
         driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
         driver.manage().addCookie(new Cookie("welcomebanner_status", "dismiss"));
@@ -34,6 +41,8 @@ public class UserSignUpTest {
 
     @Test
     public void verifyAbilityToCreateNewAccount() throws InterruptedException {
+
+        // open registration page
         System.out.println("1) Click on the 'Account' button");
         WebElement accountButton = driver.findElement(By.cssSelector("#navbarAccount"));
         accountButton.click();
@@ -45,7 +54,9 @@ public class UserSignUpTest {
         System.out.println("3) Click on the 'Not yet a customer?' button");
         WebElement notYetACustomerButton = driver.findElement(By.cssSelector("div#newCustomerLink a"));
         notYetACustomerButton.click();
+        //
 
+        // Enter data in the fields
         System.out.println("4) Fill 'Password' Field");
         driver.findElement(By.cssSelector("#passwordControl")).sendKeys(password);
 
@@ -65,9 +76,6 @@ public class UserSignUpTest {
 
 
         do {
-            iteration++;
-            email = "pzzzzazuliak" + iteration + "@yopmail.com";
-
             System.out.println("9) Clear and fill the 'Email' Field");
             driver.findElement(By.cssSelector("#emailControl")).clear();
             driver.findElement(By.cssSelector("#emailControl")).sendKeys(email);
@@ -80,6 +88,11 @@ public class UserSignUpTest {
             errorsDisp = driver.findElements(By.xpath("//div[contains(text(), 'Email must be unique')]"));
 
             //If error about existing email appears, we will ++int number in the email and will try again
+            if (errorsDisp.size() >= 1) {
+                iteration++;
+                email = "pzzzzazuliak" + iteration + "@yopmail.com";
+            }
+
         } while (errorsDisp.size() >= 1);
 
         //Now we need to verify that the success pop up message about creation of the new user appears
