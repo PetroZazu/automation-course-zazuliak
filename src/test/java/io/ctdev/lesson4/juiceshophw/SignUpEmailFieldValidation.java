@@ -45,6 +45,7 @@ public class SignUpEmailFieldValidation {
         checkThatRegisterButtonIsNotActive();
         checkErrorWhenEmailFieldBlank();
     }
+
     @Test
     public void verifyErrorWhenEmailInvalid() throws InterruptedException {
         openRegistrationPage();
@@ -53,6 +54,7 @@ public class SignUpEmailFieldValidation {
         checkErrorWhenEmailInvalid();
         checkThatRegisterButtonIsNotActive();
     }
+
     @Test
     public void verifyErrorWhenEmailAlreadyExist() throws InterruptedException {
         openRegistrationPage();

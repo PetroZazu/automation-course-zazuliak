@@ -5,9 +5,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
 import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
 public class PositiveLoginTest {
@@ -69,5 +71,10 @@ public class PositiveLoginTest {
         System.out.println("Check That user profile with Email " + email + " displayed in the list");
         Assert.assertTrue(driver.findElement(By.xpath(xPathToLoginVerefication)).isDisplayed());
 
+    }
+
+    @AfterClass
+    public void afterClass() {
+        closeDriver();
     }
 }
