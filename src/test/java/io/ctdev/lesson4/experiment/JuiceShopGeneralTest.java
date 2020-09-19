@@ -1,4 +1,4 @@
-package io.ctdev.lesson4;
+package io.ctdev.lesson4.experiment;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;

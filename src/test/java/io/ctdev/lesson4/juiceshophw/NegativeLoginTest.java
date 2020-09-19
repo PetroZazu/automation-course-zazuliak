@@ -1,37 +1,15 @@
 package io.ctdev.lesson4.juiceshophw;
 
-import io.ctdev.framework.config.TestConfig;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
-import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
-
-public class NegativeLoginTest {
-    WebDriver driver;
+public class NegativeLoginTest extends BaseTestJuiceShop {
     private String validEmail = "pzzzzazuliak@yopmail.com";
     private String validPassword = "@z$rt&12!!azazaza";
     private String invalidEmail = "pzazul@yopmail.com";
     private String invalidPassword = "aswes123";
 
-
-    @BeforeClass
-    public void beforeClass() {
-        driver = getDriver();
-        //Open Web Page
-        driver.get(TestConfig.cfg.juiceShopProd());
-        //Useing cookies adjustment, banner and cookies consent pop-ups will be closed
-        driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
-        driver.manage().addCookie(new Cookie("welcomebanner_status", "dismiss"));
-        driver.navigate().refresh();
-
-    }
 
     @Test
     public void loginWhenInvalidPasswordValidEmail() throws InterruptedException {
@@ -112,8 +90,4 @@ public class NegativeLoginTest {
         Assert.assertTrue(driver.findElement(By.xpath("//button[@id='loginButton' and @disabled='true']")).isDisplayed());
     }
 
-    @AfterClass
-    public void afterClass() {
-        closeDriver();
-    }
 }

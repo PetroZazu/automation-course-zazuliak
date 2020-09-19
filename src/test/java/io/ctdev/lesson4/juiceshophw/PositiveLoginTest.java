@@ -1,33 +1,13 @@
 package io.ctdev.lesson4.juiceshophw;
 
-import io.ctdev.framework.config.TestConfig;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
-import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
-
-public class PositiveLoginTest {
-    WebDriver driver;
+public class PositiveLoginTest extends BaseTestJuiceShop {
     private String email = "pzzzzazuliak@yopmail.com";
     private String password = "@z$rt&12!!azazaza";
     private String xPathToLoginVerefication = "//button/span[contains(text(), '" + email + "')]";
-
-    @BeforeClass
-    public void beforeClass() {
-        driver = getDriver();
-        //Open Web Page
-        driver.get(TestConfig.cfg.juiceShopProd());
-        //Useing cookies adjustment, banner and cookies consent pop-ups will be closed
-        driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
-        driver.manage().addCookie(new Cookie("welcomebanner_status", "dismiss"));
-        driver.navigate().refresh();
-    }
 
     @Test
     public void verifyAbilityToLogInWithValidCreds() throws InterruptedException {
@@ -39,9 +19,6 @@ public class PositiveLoginTest {
         clickLoginButton();
         Thread.sleep(2000);
         checkUserLoggedInSuccessfully();
-
-
-
     }
 
     public void openLoginPage() {
@@ -71,10 +48,5 @@ public class PositiveLoginTest {
         System.out.println("Check That user profile with Email " + email + " displayed in the list");
         Assert.assertTrue(driver.findElement(By.xpath(xPathToLoginVerefication)).isDisplayed());
 
-    }
-
-    @AfterClass
-    public void afterClass() {
-        closeDriver();
     }
 }

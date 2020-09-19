@@ -1,43 +1,18 @@
 package io.ctdev.lesson4.juiceshophw;
 
-import io.ctdev.framework.config.TestConfig;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
-import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
-
-public class UserSignUpTest {
-    WebDriver driver;
+public class UserSignUpTest extends BaseTestJuiceShop {
     private int iteration;
     private String email = "pzzzzazuliak@yopmail.com";
     private String password = "@z$rt&12!!azazaza";
     private List<WebElement> errorsDisp;
 
-
-    public String getEmail() {
-        return email;
-    }
-
-
-    @BeforeClass
-    public void beforeClass() {
-        driver = getDriver();
-        //Open Web Page
-        driver.get(TestConfig.cfg.juiceShopProd());
-        //Useing cookies adjustment, banner and cookies consent pop-ups will be closed
-        driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
-        driver.manage().addCookie(new Cookie("welcomebanner_status", "dismiss"));
-        driver.navigate().refresh();
-    }
 
     @Test
     public void verifyAbilityToCreateNewAccount() throws InterruptedException {
@@ -108,13 +83,6 @@ public class UserSignUpTest {
         System.out.println("Email is: " + email);
         System.out.println("Password is: " + password);
     }
-
-    @AfterClass
-    public void afterClass() {
-        closeDriver();
-    }
-
-
 }
 
 

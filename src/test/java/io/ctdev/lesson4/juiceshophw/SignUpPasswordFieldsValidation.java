@@ -1,22 +1,11 @@
 package io.ctdev.lesson4.juiceshophw;
 
-import io.ctdev.framework.config.TestConfig;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
-import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
-
-public class SignUpPasswordFieldsValidation {
-
-    SignUpEmailFieldValidation signUpEmailFieldValidation = new SignUpEmailFieldValidation();
-    WebDriver driver;
+public class SignUpPasswordFieldsValidation extends BaseTestJuiceShop {
 
     private String email = "zazazaazazaza@yopmail.com";
     private String validPassword = "Azerty12!!";
@@ -24,17 +13,6 @@ public class SignUpPasswordFieldsValidation {
     private String password21symbols = "123qwe123qwe123qwe123";
     private String password5symbols = "12345";
     private String password20symbols = "123qwe123qwe123qwe12";
-
-    @BeforeClass
-    public void beforeClass() {
-        driver = getDriver();
-        //Open Web Page
-        driver.get(TestConfig.cfg.juiceShopProd());
-        //Useing cookies adjustment, banner and cookies consent pop-ups will be closed
-        driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
-        driver.manage().addCookie(new Cookie("welcomebanner_status", "dismiss"));
-        driver.navigate().refresh();
-    }
 
     @Test
     public void verifyPasswordIsRequired() throws InterruptedException {
@@ -209,11 +187,4 @@ public class SignUpPasswordFieldsValidation {
     public void justClickOutOfTheTextBox() {
         driver.findElement(By.xpath("//h1[contains(text(), 'User Registration')]")).click();
     }
-
-
-    @AfterClass
-    public void afterClass() {
-        closeDriver();
-    }
-
 }

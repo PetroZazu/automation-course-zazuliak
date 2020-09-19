@@ -1,32 +1,17 @@
 package io.ctdev.lesson4.juiceshophw;
 
-import io.ctdev.framework.config.TestConfig;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
-import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
-public class SignUpEmailFieldValidation {
-    WebDriver driver;
+public class SignUpEmailFieldValidation extends BaseTestJuiceShop {
     private String invalidEmail = "zazazaazazaza%gmail.com";
     private String validEmail = "pzzzzazuliak@yopmail.com";
     private String password = "Azerty12!!";
 
-    @BeforeClass
-    public void beforeClass() {
-        driver = getDriver();
-        //Open Web Page
-        driver.get(TestConfig.cfg.juiceShopProd());
-        //Useing cookies adjustment, banner and cookies consent pop-ups will be closed
-        driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
-        driver.manage().addCookie(new Cookie("welcomebanner_status", "dismiss"));
-        driver.navigate().refresh();
-    }
 
    /* @Factory(dataProvider = "dataProvider")
     public JuiceShopSignUpEmailFieldValidation(String invalidEmail) {
@@ -63,7 +48,6 @@ public class SignUpEmailFieldValidation {
         clickOnTheRegisterButton();
         checkEmailAlreadyExistsErrorDisplayed();
     }
-
 
     public void openRegistrationPage() {
         System.out.println("Click on the 'Account' button");
@@ -138,20 +122,12 @@ public class SignUpEmailFieldValidation {
         Assert.assertTrue(driver.findElement(By.xpath("//mat-error[contains(text(), 'Email address is not valid')]")).isDisplayed());
     }
 
-
     public void checkEmailAlreadyExistsErrorDisplayed() throws InterruptedException {
         Thread.sleep(1000);
         System.out.println("Is error:'Email must be unique' displayed? ");
         System.out.println(driver.findElement(By.xpath("//div[contains(text(), 'Email must be unique')]")).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(), 'Email must be unique')]")).isDisplayed());
     }
-
-
-    @AfterClass
-    public void afterClass() {
-        closeDriver();
-    }
-
 
 }
 
