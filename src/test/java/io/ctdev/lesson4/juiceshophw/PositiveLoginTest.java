@@ -10,14 +10,13 @@ public class PositiveLoginTest extends BaseTestJuiceShop {
     private String xPathToLoginVerefication = "//button/span[contains(text(), '" + email + "')]";
 
     @Test
-    public void verifyAbilityToLogInWithValidCreds() throws InterruptedException {
+    public void verifyAbilityToLogInWithValidCreds() {
         openLoginPage();
         System.out.println("Fill 'Email' field with valid Email");
         fillEmailTextBox(email);
         System.out.println("Fill 'Password' field with valid Password");
         fillPasswordTextBox(password);
         clickLoginButton();
-        Thread.sleep(2000);
         checkUserLoggedInSuccessfully();
     }
 
@@ -44,9 +43,8 @@ public class PositiveLoginTest extends BaseTestJuiceShop {
 
     public void checkUserLoggedInSuccessfully() {
         System.out.println("Click on the 'Account' button");
-        driver.findElement(By.cssSelector("#navbarAccount")).click();
+        waitUntilDisplayed(By.cssSelector("#navbarAccount"), 5).click();
         System.out.println("Check That user profile with Email " + email + " displayed in the list");
-        Assert.assertTrue(driver.findElement(By.xpath(xPathToLoginVerefication)).isDisplayed());
-
+        Assert.assertTrue(waitUntilDisplayed(By.xpath(xPathToLoginVerefication), 5).isDisplayed());
     }
 }

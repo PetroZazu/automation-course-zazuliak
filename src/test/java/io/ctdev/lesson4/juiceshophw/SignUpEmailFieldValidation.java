@@ -1,30 +1,21 @@
 package io.ctdev.lesson4.juiceshophw;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
+
+import java.util.List;
 
 
 public class SignUpEmailFieldValidation extends BaseTestJuiceShop {
     private String invalidEmail = "zazazaazazaza%gmail.com";
     private String validEmail = "pzzzzazuliak@yopmail.com";
     private String password = "Azerty12!!";
-
-
-   /* @Factory(dataProvider = "dataProvider")
-    public JuiceShopSignUpEmailFieldValidation(String invalidEmail) {
-        this.invalidEmail = invalidEmail;
-    }*/
-
-   /* @DataProvider
-    public static Object[] dataProvider() {
-        return new Object[]{"invalidemail#mail.com", "invalidemailmail.com","123123123123123@123123123"};
-    }*/
+    private List<WebElement> dropDownContent;
 
     @Test
-    public void verifyErrorWhenEmailBlank() throws InterruptedException {
+    public void verifyErrorWhenEmailBlank() {
         openRegistrationPage();
         fillAllFieldsExceptOfEmail();
         checkThatRegisterButtonIsNotActive();
@@ -32,7 +23,7 @@ public class SignUpEmailFieldValidation extends BaseTestJuiceShop {
     }
 
     @Test
-    public void verifyErrorWhenEmailInvalid() throws InterruptedException {
+    public void verifyErrorWhenEmailInvalid() {
         openRegistrationPage();
         fillAllFieldsExceptOfEmail();
         fillEmailFieldWithInvalidEmail();
@@ -41,7 +32,7 @@ public class SignUpEmailFieldValidation extends BaseTestJuiceShop {
     }
 
     @Test
-    public void verifyErrorWhenEmailAlreadyExist() throws InterruptedException {
+    public void verifyErrorWhenEmailAlreadyExist() {
         openRegistrationPage();
         fillAllFieldsExceptOfEmail();
         fillEmailFieldWithAlreadyExistUserEmail();
@@ -68,7 +59,7 @@ public class SignUpEmailFieldValidation extends BaseTestJuiceShop {
         driver.findElement(By.cssSelector("#registerButton")).click();
     }
 
-    public void fillAllFieldsExceptOfEmail() throws InterruptedException {
+    public void fillAllFieldsExceptOfEmail() {
         System.out.println("Click on the 'Email' Text box but do not send keys inside");
         driver.findElement(By.cssSelector("#emailControl")).click();
 
@@ -78,54 +69,56 @@ public class SignUpEmailFieldValidation extends BaseTestJuiceShop {
         System.out.println("Fill 'Repeat Password' Field");
         driver.findElement(By.cssSelector("#repeatPasswordControl")).sendKeys(password);
 
-        Thread.sleep(1500);
         System.out.println("Click on the 'Security Question drop down list");
-        driver.findElement(By.xpath("//mat-select")).click();
+        //Here I add a cycle, cause selenium sometimes doesn't open the drop-down list
+        do {
+            driver.findElement(By.xpath("//mat-select[contains(@name, 'securityQuestion')]")).click();
+            dropDownContent = driver.findElements(By.xpath("//mat-option"));
+            System.out.println("try");
+        } while (dropDownContent.size() < 1);
+
+        //driver.findElement(By.xpath("//mat-select[contains(@name, 'securityQuestion')]")).click();
 
         System.out.println("Click on the option");
-        driver.findElement(By.xpath("//mat-option")).click();
+        waitUntilDisplayed(By.xpath("//mat-option[1]"), 2).click();
 
         System.out.println("Fill 'Answer' field with text");
         driver.findElement(By.cssSelector("#securityAnswerControl")).sendKeys("SecurityText:)");
+
+
     }
 
-    public void fillEmailFieldWithInvalidEmail() throws InterruptedException {
-        Thread.sleep(1000);
+    public void fillEmailFieldWithInvalidEmail() {
         System.out.println("fill email field with invalid email");
-        driver.findElement(By.cssSelector("#emailControl")).sendKeys(invalidEmail);
+        waitUntilDisplayed(By.cssSelector("#emailControl"), 5).sendKeys(invalidEmail);
     }
 
-    public void fillEmailFieldWithAlreadyExistUserEmail() throws InterruptedException {
-        Thread.sleep(1000);
+    public void fillEmailFieldWithAlreadyExistUserEmail() {
         System.out.println("fill email field with exist user email");
-        driver.findElement(By.cssSelector("#emailControl")).sendKeys(validEmail);
+        waitUntilDisplayed(By.cssSelector("#emailControl"), 5).sendKeys(validEmail);
     }
 
-    public void checkThatRegisterButtonIsNotActive() throws InterruptedException {
-        Thread.sleep(1000);
+    public void checkThatRegisterButtonIsNotActive() {
         System.out.println("Registration button is not active?: ");
-        System.out.print(driver.findElement(By.xpath("//button[@id='registerButton' and @disabled='true']")).isDisplayed());
+        System.out.print(waitUntilDisplayed(By.xpath("//button[@id='registerButton' and @disabled='true']"), 5).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//button[@id='registerButton' and @disabled='true']")).isDisplayed());
     }
 
-    public void checkErrorWhenEmailFieldBlank() throws InterruptedException {
-        Thread.sleep(1000);
+    public void checkErrorWhenEmailFieldBlank() {
         System.out.println("'Please provide an email address' error is displayed: ");
-        System.out.println(driver.findElement(By.xpath("//mat-error[contains(text(), 'Please provide an email')]")).isDisplayed());
+        System.out.println(waitUntilDisplayed(By.xpath("//mat-error[contains(text(), 'Please provide an email')]"), 5).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//mat-error[contains(text(), 'Please provide an email')]")).isDisplayed());
     }
 
-    public void checkErrorWhenEmailInvalid() throws InterruptedException {
-        Thread.sleep(1000);
+    public void checkErrorWhenEmailInvalid() {
         System.out.println("'Email address is not valid.' error is displayed: ");
-        System.out.println(driver.findElement(By.xpath("//mat-error[contains(text(), 'Email address is not valid')]")).isDisplayed());
+        System.out.println(waitUntilDisplayed(By.xpath("//mat-error[contains(text(), 'Email address is not valid')]"), 5).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//mat-error[contains(text(), 'Email address is not valid')]")).isDisplayed());
     }
 
-    public void checkEmailAlreadyExistsErrorDisplayed() throws InterruptedException {
-        Thread.sleep(1000);
+    public void checkEmailAlreadyExistsErrorDisplayed() {
         System.out.println("Is error:'Email must be unique' displayed? ");
-        System.out.println(driver.findElement(By.xpath("//div[contains(text(), 'Email must be unique')]")).isDisplayed());
+        System.out.println(waitUntilDisplayed(By.xpath("//div[contains(text(), 'Email must be unique')]"), 5).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(), 'Email must be unique')]")).isDisplayed());
     }
 

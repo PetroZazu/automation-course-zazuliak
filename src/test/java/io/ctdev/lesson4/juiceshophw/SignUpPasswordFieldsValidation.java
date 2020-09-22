@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 public class SignUpPasswordFieldsValidation extends BaseTestJuiceShop {
 
     private String email = "zazazaazazaza@yopmail.com";
@@ -13,9 +15,10 @@ public class SignUpPasswordFieldsValidation extends BaseTestJuiceShop {
     private String password21symbols = "123qwe123qwe123qwe123";
     private String password5symbols = "12345";
     private String password20symbols = "123qwe123qwe123qwe12";
+    private List<WebElement> dropDownContent;
 
     @Test
-    public void verifyPasswordIsRequired() throws InterruptedException {
+    public void verifyPasswordIsRequired() {
         System.out.println("verifyPasswordIsRequired() test");
         openRegistrationPage();
         fillAllFieldsExceptOfPasswords();
@@ -24,7 +27,7 @@ public class SignUpPasswordFieldsValidation extends BaseTestJuiceShop {
     }
 
     @Test
-    public void verifyTooShortPassword() throws InterruptedException {
+    public void verifyTooShortPassword() {
         System.out.println("verifyTooShortPassword() test");
         openRegistrationPage();
         fillAllFieldsExceptOfPasswords();
@@ -35,7 +38,7 @@ public class SignUpPasswordFieldsValidation extends BaseTestJuiceShop {
     }
 
     @Test
-    public void verifyTooLongPassword() throws InterruptedException {
+    public void verifyTooLongPassword() {
         System.out.println("verifyTooLongPassword() test");
         openRegistrationPage();
         fillAllFieldsExceptOfPasswords();
@@ -46,7 +49,7 @@ public class SignUpPasswordFieldsValidation extends BaseTestJuiceShop {
     }
 
     @Test
-    public void verifyMaxAllowedPasswordLength() throws InterruptedException {
+    public void verifyMaxAllowedPasswordLength() {
         System.out.println("verifyMaxAllowedPasswordLength() test");
         openRegistrationPage();
         fillAllFieldsExceptOfPasswords();
@@ -57,7 +60,7 @@ public class SignUpPasswordFieldsValidation extends BaseTestJuiceShop {
     }
 
     @Test
-    public void verifyMinAllowedPasswordLength() throws InterruptedException {
+    public void verifyMinAllowedPasswordLength() {
         System.out.println("verifyMinAllowedPasswordLength() test");
         openRegistrationPage();
         fillAllFieldsExceptOfPasswords();
@@ -68,7 +71,7 @@ public class SignUpPasswordFieldsValidation extends BaseTestJuiceShop {
     }
 
     @Test
-    public void verifyRepeatPasswordIsRequired() throws InterruptedException {
+    public void verifyRepeatPasswordIsRequired() {
         System.out.println("verifyRepeatPasswordIsRequired() test");
         openRegistrationPage();
         fillAllFieldsExceptOfPasswords();
@@ -79,7 +82,7 @@ public class SignUpPasswordFieldsValidation extends BaseTestJuiceShop {
     }
 
     @Test
-    public void verifyErrorWhenPasswordsDoNotMatch() throws InterruptedException {
+    public void verifyErrorWhenPasswordsDoNotMatch() {
         System.out.println("verifyErrorWhenPasswordsDoNotMatch() test");
         openRegistrationPage();
         fillAllFieldsExceptOfPasswords();
@@ -91,14 +94,21 @@ public class SignUpPasswordFieldsValidation extends BaseTestJuiceShop {
         checkThatRegisterButtonIsNotActive();
     }
 
-    public void fillAllFieldsExceptOfPasswords() throws InterruptedException {
+    public void fillAllFieldsExceptOfPasswords() {
         System.out.println("fill email field with valid email");
         driver.findElement(By.cssSelector("#emailControl")).sendKeys(email);
-        Thread.sleep(1000);
         System.out.println("Click on the 'Security Question drop down list");
-        driver.findElement(By.xpath("//mat-select")).click();
-        System.out.println("Choose one of the options");
-        driver.findElement(By.xpath("//mat-option")).click();
+        //Here I add a cycle, cause selenium sometimes doesn't open the drop-down list
+        do {
+            driver.findElement(By.xpath("//mat-select[contains(@name, 'securityQuestion')]")).click();
+            dropDownContent = driver.findElements(By.xpath("//mat-option"));
+            System.out.println("try");
+        } while (dropDownContent.size() < 1);
+
+        //driver.findElement(By.xpath("//mat-select[contains(@name, 'securityQuestion')]")).click();
+
+        System.out.println("Click on the option");
+        waitUntilDisplayed(By.xpath("//mat-option[1]"), 2).click();
         System.out.println("Fill 'Answer' field with text");
         driver.findElement(By.cssSelector("#securityAnswerControl")).sendKeys("SecurityText:)");
     }
@@ -137,12 +147,11 @@ public class SignUpPasswordFieldsValidation extends BaseTestJuiceShop {
         Assert.assertTrue(driver.findElement(By.xpath("//mat-error[contains(text(), 'Please provide a password. ')]")).isDisplayed());
     }
 
-    public void checkErrorMessageWhenRepeatPasswordFieldBlank() throws InterruptedException {
+    public void checkErrorMessageWhenRepeatPasswordFieldBlank() {
         //to trigger error, we need to click in the password text box, leave it empty and click out
         clearRepeatPasswordField();
         System.out.println("Is error message about blank 'Repeat Password' field displayed?");
-        Thread.sleep(1000);
-        System.out.println(driver.findElement(By.xpath("//mat-error[contains(text(), 'Please repeat your password.')]")).isDisplayed());
+        System.out.println(waitUntilDisplayed(By.xpath("//mat-error[contains(text(), 'Please repeat your password.')]"), 3).isDisplayed());
         Assert.assertTrue(driver.findElement(By.xpath("//mat-error[contains(text(), 'Please repeat your password.')]")).isDisplayed());
     }
 

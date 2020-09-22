@@ -12,36 +12,33 @@ public class NegativeLoginTest extends BaseTestJuiceShop {
 
 
     @Test
-    public void loginWhenInvalidPasswordValidEmail() throws InterruptedException {
+    public void loginWhenInvalidPasswordValidEmail() {
         openLoginPage();
         System.out.println("Fill valid email");
         fillEmailTextBox(validEmail);
         System.out.println("Fill invalid password");
         fillPasswordTextBox(invalidPassword);
         clickLoginButton();
-        Thread.sleep(1000);
         checkErrorWhenPassordOrEmailInvalid();
     }
 
     @Test
-    public void loginWhenInvalidEmailValidPassword() throws InterruptedException {
+    public void loginWhenInvalidEmailValidPassword() {
         openLoginPage();
         System.out.println("Fill invalid email");
         fillEmailTextBox(invalidEmail);
         System.out.println("Fill valid password");
         fillPasswordTextBox(validPassword);
         clickLoginButton();
-        Thread.sleep(1000);
         checkErrorWhenPassordOrEmailInvalid();
     }
 
     @Test
-    public void loginWhenEmptyPassword() throws InterruptedException {
+    public void loginWhenEmptyPassword(){
         openLoginPage();
         System.out.println("Fill valid email");
         fillEmailTextBox(validEmail);
         clickInAndClickOutPasswordTextBox();
-        Thread.sleep(1000);
         checkIfEmptyPasswordFieldErrorAppears();
         checkThatLoginButtonInactive();
     }
@@ -62,7 +59,7 @@ public class NegativeLoginTest extends BaseTestJuiceShop {
 
     public void checkErrorWhenPassordOrEmailInvalid() {
         System.out.println("Verify that Error about invalid Email/Password displayed");
-        Assert.assertTrue(driver.findElement(By.xpath("//div[contains(text(), 'Invalid email or password')]")).isDisplayed());
+        Assert.assertTrue(waitUntilDisplayed(By.xpath("//div[contains(text(), 'Invalid email or password')]"), 5).isDisplayed());
     }
 
     public void openLoginPage() {
@@ -82,7 +79,7 @@ public class NegativeLoginTest extends BaseTestJuiceShop {
 
     public void checkIfEmptyPasswordFieldErrorAppears() {
         System.out.println("Verify that empty password field error appears");
-        Assert.assertTrue(driver.findElement(By.xpath("//mat-error[contains(text(), 'Please provide a password')]")).isDisplayed());
+        Assert.assertTrue(waitUntilDisplayed(By.xpath("//mat-error[contains(text(), 'Please provide a password')]"), 5).isDisplayed());
     }
 
     public void checkThatLoginButtonInactive() {
