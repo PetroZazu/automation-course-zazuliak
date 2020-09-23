@@ -39,10 +39,10 @@ public class UserSignUpTestv2 extends BaseTestJuiceShop {
 
         //Here I add a cycle, cause selenium sometimes doesn't open the drop-down list
         do {
-            driver.findElement(By.xpath("//mat-select[contains(@name, 'securityQuestion')]")).click();
+            //WebElement x = driver.findElement(By.xpath("//mat-select[contains(@name, 'securityQuestion')]"));
             dropDownContent = driver.findElements(By.xpath("//mat-option"));
             iteration++;
-            System.out.println("try");
+            System.out.println("try" + iteration);
             if (iteration == 20) {
                 break;
             }

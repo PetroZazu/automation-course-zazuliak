@@ -11,12 +11,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
 import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
 public class BaseTestJuiceShop {
-    WebDriver driver;
-    WebDriverWait wait;
+    public WebDriver driver;
+    public WebDriverWait wait;
+    public List<String> itemsDescriptionPage1 = new ArrayList<>();
 
     @BeforeClass
     public void beforeClass() {
@@ -35,6 +39,7 @@ public class BaseTestJuiceShop {
         wait = new WebDriverWait(driver, howLongToWaitSeconds);
         return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
+
 
     @AfterClass
     public void afterClass() {
