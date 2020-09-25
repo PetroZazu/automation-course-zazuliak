@@ -18,14 +18,15 @@ import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
 import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
 public class BaseTestJuiceShop {
-    public WebDriver driver;
-    public WebDriverWait wait;
+    public static WebDriver driver;
+    public static WebDriverWait wait;
     public List<String> itemsDescriptionPage1 = new ArrayList<>();
 
     @BeforeClass
     public void beforeClass() {
+        System.out.println("before class1");
         driver = getDriver();
-        wait = new WebDriverWait(driver, 5);
+        wait = new WebDriverWait(driver, 7);
         //Open Web Page
         driver.get(TestConfig.cfg.juiceShopProd());
         //Useing cookies adjustment, banner and cookies consent pop-ups will be closed
@@ -35,9 +36,14 @@ public class BaseTestJuiceShop {
 
     }
 
-    public WebElement waitUntilDisplayed(By locator, int howLongToWaitSeconds) {
-        wait = new WebDriverWait(driver, howLongToWaitSeconds);
-        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+    public static WebElement waitUntilDisplayed(By locator, int howLongToWaitSeconds) {
+       try {
+           wait = new WebDriverWait(driver, howLongToWaitSeconds);
+           return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+       } finally {
+           wait = new WebDriverWait(driver, 7);
+       }
+
     }
 
 

@@ -4,16 +4,21 @@ import io.ctdev.lesson4.juiceshophw.BaseTestJuiceShop;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-public class verifyProductInfo extends BaseTestJuiceShop {
-    int productPositionNumber = 12;
+public class VerifyProductInfo extends BaseTestJuiceShop {
+    int productPositionNumber = 1;
 
     private String productNameOnPage;
     private String productImgLinkOnPage;
     private String productPriceOnPage;
 
+    @BeforeClass
+    public void beforeClass2() {
+        System.out.println("before class 2");
+    }
 
     @AfterMethod
     public void beforeEachTest() {
@@ -68,7 +73,7 @@ public class verifyProductInfo extends BaseTestJuiceShop {
     }
 
     public String getItemDescription() {
-        return waitUntilDisplayed(By.xpath("//mat-dialog-container//h1/following::div[1]"),4).getText();
+        return waitUntilDisplayed(By.xpath("//mat-dialog-container//h1/following::div[1]"), 4).getText();
     }
 
     public void clickOnTheProduct() {
@@ -107,8 +112,8 @@ public class verifyProductInfo extends BaseTestJuiceShop {
         System.out.println("expected Product description is: " + "'" + itemsDescriptionPage1.get(productPositionNumber) + "'");
     }
 
-    public void fillArrayWithItemsDescription (){
-        itemsDescriptionPage1.add(0,"null");
+    public void fillArrayWithItemsDescription() {
+        itemsDescriptionPage1.add(0, "null");
         itemsDescriptionPage1.add(1, "The all-time classic.");
         itemsDescriptionPage1.add(2, "Finest pressings of apples. Allergy disclaimer: Might contain traces of worms. Can be sent back to us for recycling.");
         itemsDescriptionPage1.add(3, "Monkeys love it the most.");
