@@ -1,9 +1,6 @@
 package io.ctdev.lesson4.experiment;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Cookie;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -17,20 +14,23 @@ public class JuiceShopGeneralTest {
     @BeforeClass
     public void beforeClass() {
         driver = getDriver();
-        driver.get("http://18.217.145.6");
-        driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
-        driver.manage().addCookie(new Cookie("welcomebanner_status", "dismiss"));
-        driver.navigate().refresh();
+        driver.get("https://www.amazon.com/Europe/s?k=Europe&page=3");
+       // driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
+        //driver.manage().addCookie(new Cookie("welcomebanner_status", "dismiss"));
+       // driver.navigate().refresh();
     }
 
 
     @Test
     public void clickTest() throws InterruptedException {
-        WebElement milkPocket = driver.findElement(By.cssSelector("span[class*='mat-button-wrapper'] img[class='logo']"));
-        milkPocket.click();
+        //WebElement milkPocket = driver.findElement(By.cssSelector("span[class*='mat-button-wrapper'] img[class='logo']"));
+        //milkPocket.click();
+        //Thread.sleep(3000);
+        //milkPocket.click();
         Thread.sleep(3000);
-        milkPocket.click();
-        Thread.sleep(3000);
+        scrollDown();
+        Thread.sleep(10000);
+
     }
 
     @Test
@@ -75,6 +75,12 @@ public class JuiceShopGeneralTest {
         WebElement regEmailTextBox = driver.findElement(By.xpath("//input[contains(@id, 'emailControl')]"));
         regEmailTextBox.sendKeys("testmail@yopmail.com");
         Thread.sleep(5000);
+
+    }
+
+    public void scrollDown() {
+        JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("window.scrollTo(0,1500)");
 
     }
 
