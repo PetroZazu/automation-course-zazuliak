@@ -15,7 +15,7 @@ public class TestsWithSoldOutProducts extends BaseTestJuiceShop {
     }
 
     @Test
-    public void verifyInabilityAddSoldOutProductToCart() throws InterruptedException {
+    public void verifyInabilityAddSoldOutProductToCart() {
         scrollToTheElement(By.xpath("//button[contains(@aria-label, 'Next page')]"));
         goToTheNextPage();
         addSoldOutProduct();
