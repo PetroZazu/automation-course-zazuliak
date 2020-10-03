@@ -33,7 +33,7 @@ public abstract class AbstractPage {
 
     }
 
-    public void waitForPageToLoad(WebDriver driver) {
+    public static void waitForPageToLoad(WebDriver driver) {
         ExpectedCondition<Boolean> pageLoad = new
                 ExpectedCondition<Boolean>() {
                     public Boolean apply(WebDriver driver) {

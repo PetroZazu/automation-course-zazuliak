@@ -13,6 +13,7 @@ import org.testng.annotations.Test;
 
 import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
 import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
+import static io.ctdev.framework.pages.AbstractPage.waitForPageToLoad;
 
 public class NegativeLoginTest {
 
@@ -33,7 +34,7 @@ public class NegativeLoginTest {
     public void afterMethod() {
         System.out.println("Go to the login page again");
         driver.navigate().refresh();
-        loginPage.waitForPageToLoad(driver);
+        waitForPageToLoad(driver);
     }
 
     @Test

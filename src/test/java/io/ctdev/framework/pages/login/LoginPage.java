@@ -90,7 +90,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public boolean isInvalidLoginOrPasswordErrorMessageDisplayed() {
-        return waitUntilDisplayed(invalidLoginOrPasswordErrorElement, 50).isDisplayed();
+        return waitUntilDisplayed(invalidLoginOrPasswordErrorElement, 4).isDisplayed();
     }
 
     public boolean isEmptyPasswordErrorDisplayed() {
