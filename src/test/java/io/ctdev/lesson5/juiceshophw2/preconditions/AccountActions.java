@@ -1,4 +1,4 @@
-package io.ctdev.preconditions.juiceshop;
+package io.ctdev.lesson5.juiceshophw2.preconditions;
 
 import io.ctdev.lesson4.juiceshophw.BaseTestJuiceShop;
 import org.openqa.selenium.By;

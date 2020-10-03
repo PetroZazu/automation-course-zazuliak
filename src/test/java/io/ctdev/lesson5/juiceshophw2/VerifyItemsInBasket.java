@@ -1,7 +1,7 @@
 package io.ctdev.lesson5.juiceshophw2;
 
 import io.ctdev.lesson4.juiceshophw.BaseTestJuiceShop;
-import io.ctdev.preconditions.juiceshop.AccountActions;
+import io.ctdev.lesson5.juiceshophw2.preconditions.AccountActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -32,7 +32,6 @@ public class VerifyItemsInBasket extends BaseTestJuiceShop {
     @Test
     public void productNameInCartVerefication() {
         verifyProductName();
-
     }
 
     @Test

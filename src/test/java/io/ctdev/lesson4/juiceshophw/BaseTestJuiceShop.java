@@ -5,7 +5,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
@@ -24,11 +23,10 @@ public class BaseTestJuiceShop {
 
     @BeforeClass
     public void beforeClass() {
-        System.out.println("before class1");
         driver = getDriver();
         wait = new WebDriverWait(driver, 7);
         //Open Web Page
-        driver.get(TestConfig.cfg.juiceShopProd());
+        driver.get(TestConfig.cfg.juiceShopMainPage());
         //Useing cookies adjustment, banner and cookies consent pop-ups will be closed
         driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
         driver.manage().addCookie(new Cookie("welcomebanner_status", "dismiss"));

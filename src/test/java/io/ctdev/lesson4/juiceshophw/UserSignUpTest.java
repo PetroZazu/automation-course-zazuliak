@@ -1,5 +1,6 @@
 package io.ctdev.lesson4.juiceshophw;
 
+import io.ctdev.lesson4.juiceshophw.BaseTestJuiceShop;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
