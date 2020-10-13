@@ -4,6 +4,7 @@ public class JuiceShopUser {
     private String email;
     private String password;
 
+
     public JuiceShopUser() {
 
     }

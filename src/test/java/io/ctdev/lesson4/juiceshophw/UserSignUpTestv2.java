@@ -9,15 +9,14 @@ import org.testng.annotations.Test;
 import java.util.List;
 
 public class UserSignUpTestv2 extends BaseTestJuiceShop {
-    RandomString rs = new RandomString(7);
-    private String randomString = rs.nextString();
-    private String email = "pzazu" + randomString + "@yopmail.com";
+    RandomString randomString = new RandomString(7);
+    private String email = "pzazu" + randomString.nextString() + "@yopmail.com";
     private String password = "@z$rt&12!!azazaza";
     private List<WebElement> dropDownContent;
     private int iteration = 0;
 
     @Test
-    public void verifyAbilityToCreateNewAccount() throws InterruptedException {
+    public void verifyAbilityToCreateNewAccount() {
 
         System.out.println("Click on the 'Account' button");
         WebElement accountButton = driver.findElement(By.cssSelector("#navbarAccount"));

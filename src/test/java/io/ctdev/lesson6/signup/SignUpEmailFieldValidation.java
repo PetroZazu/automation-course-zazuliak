@@ -18,10 +18,7 @@ public class SignUpEmailFieldValidation {
     private SignUpPage signUpPage = new SignUpPage(driver);
     String invalidEmail = "zazazaazazaza%gmail.com";
     String validEmail = "pzzzzazuliak@yopmail.com";
-
     String password = "Azerty12!!";
-    String seqQuestionAnswer = "Security? maybe no)";
-
 
     @BeforeClass
     public void setUP() {
@@ -37,7 +34,7 @@ public class SignUpEmailFieldValidation {
 
     @Test
     public void verifyErrorWhenEmailBlank() {
-        signUpPage.fillAllFieldsExceptOfEmail(password, seqQuestionAnswer);
+        signUpPage.fillAllFieldsExceptOfEmail(password);
         Assert.assertTrue(signUpPage.isErrorWhenEmailFieldBlankDisplayed());
         Assert.assertTrue(signUpPage.isRegisterButtonInNotActiveState());
     }
@@ -45,7 +42,7 @@ public class SignUpEmailFieldValidation {
 
     @Test
     public void verifyErrorWhenEmailInvalid() {
-        signUpPage.fillAllFieldsExceptOfEmail(password, seqQuestionAnswer);
+        signUpPage.fillAllFieldsExceptOfEmail(password);
         signUpPage.fillEmailField(invalidEmail);
         signUpPage.isErrorAboutInvalidEmailDisplayed();
         signUpPage.isRegisterButtonInNotActiveState();
@@ -53,7 +50,7 @@ public class SignUpEmailFieldValidation {
 
     @Test
     public void verifyErrorWhenEmailAlreadyExist() {
-        signUpPage.fillAllFieldsExceptOfEmail(password,seqQuestionAnswer);
+        signUpPage.fillAllFieldsExceptOfEmail(password);
         signUpPage.fillEmailField(validEmail);
         signUpPage.clickOnTheRegisterButton();
         signUpPage.isErrorAboutAlreadyExistsEmailDisplayed();
