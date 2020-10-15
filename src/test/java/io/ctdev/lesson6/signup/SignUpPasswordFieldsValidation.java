@@ -25,7 +25,8 @@ public class SignUpPasswordFieldsValidation {
     @BeforeClass
     public void setUP() {
         signUpPage.openPage();
-        waitForPageToLoad(driver);
+        signUpPage.closeWelcomeAndCookiesPopUps();
+       // waitForPageToLoad(driver);
     }
 
     @AfterMethod

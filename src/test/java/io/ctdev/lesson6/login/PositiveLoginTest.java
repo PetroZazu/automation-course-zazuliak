@@ -21,6 +21,7 @@ public class PositiveLoginTest {
     public void setUp() {
         loginPage = new LoginPage(driver);
         loginPage.openPage();
+        loginPage.closeWelcomeAndCookiesPopUps();
         user = new JuiceShopUserBuilder().email("pzzzzazuliak@yopmail.com").password("@z$rt&12!!azazaza").build();
     }
 

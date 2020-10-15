@@ -32,8 +32,10 @@ public class TestsWithSoldOutProducts extends BaseTestJuiceShop {
     }
 
     public void scrollToTheElement(By locator) {
+        System.out.println("Performing scroll to the element: " + locator);
         JavascriptExecutor jse = (JavascriptExecutor) driver;
         jse.executeScript("arguments[0].scrollIntoView(true)", driver.findElement(locator));
+
     }
 
     public void verifySoldOutProductMessage() {

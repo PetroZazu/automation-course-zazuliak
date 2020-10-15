@@ -44,10 +44,6 @@ public class SignUpPage extends AbstractPage {
     public void openPage() {
         System.out.println("Open Signup Web Page");
         driver.get(TestConfig.cfg.juiceShopSignUpPage());
-        System.out.println("Using cookies adjustment, banner and cookies consent pop-ups will be closed");
-        driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
-        driver.manage().addCookie(new Cookie("welcomebanner_status", "dismiss"));
-        driver.navigate().refresh();
     }
 
     public void fillEmailField(String email) {

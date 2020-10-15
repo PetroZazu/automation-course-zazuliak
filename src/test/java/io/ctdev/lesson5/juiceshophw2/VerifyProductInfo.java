@@ -56,7 +56,6 @@ public class VerifyProductInfo extends BaseTestJuiceShop {
         clickOnTheProduct();
         printActualAndExpectedProductDescription();
         Assert.assertTrue(getItemDescription().equals(itemsDescriptionPage1.get(productPositionNumber)));
-
     }
 
 

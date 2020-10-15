@@ -23,6 +23,7 @@ public class UserSignUpTest {
     @BeforeClass
     public void setUP() {
         signUpPage.openPage();
+        signUpPage.closeWelcomeAndCookiesPopUps();
         waitForPageToLoad(driver);
         newUser = new JuiceShopUserBuilder().email("pzazu" + randomString.nextString() + "@yopmail.com").password("@z$rt&12!!azazaza").build();
 

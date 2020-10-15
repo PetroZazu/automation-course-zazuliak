@@ -36,10 +36,13 @@ public class LoginPage extends AbstractPage {
     public void openPage() {
         System.out.println("Open Login Web Page");
         driver.get(TestConfig.cfg.juiceShopLoginPage());
-        System.out.println("Using cookies adjustment, banner and cookies consent pop-ups will be closed");
-        driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
-        driver.manage().addCookie(new Cookie("welcomebanner_status", "dismiss"));
-        driver.navigate().refresh();
+    }
+
+    public void performLoginToTheAccount() {
+        fillEmailTextBox("pzzzzazuliak@yopmail.com");
+        fillPasswordTextBox("@z$rt&12!!azazaza");
+        clickOnSubmitLoginButton();
+        clickOnAccountButton();
     }
 
     public void clickOnAccountButton() {
@@ -65,7 +68,7 @@ public class LoginPage extends AbstractPage {
 
     public void fillPasswordTextBox(String password) {
         System.out.println("Fill 'Password' field with text: " + password);
-        waitUntilDisplayed(passwordTextBox,5).sendKeys(password);
+        waitUntilDisplayed(passwordTextBox, 5).sendKeys(password);
     }
 
 

@@ -28,6 +28,7 @@ public class NegativeLoginTest {
         User2InvalidEmailValidPassword = new JuiceShopUserBuilder().email("pzazul@yopmail.com").password("@z$rt&12!!azazaza").build();
         loginPage = new LoginPage(driver);
         loginPage.openPage();
+        loginPage.closeWelcomeAndCookiesPopUps();
     }
 
     @AfterMethod
