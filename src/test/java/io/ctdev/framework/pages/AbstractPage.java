@@ -14,7 +14,7 @@ public abstract class AbstractPage {
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
-        //wait = new WebDriverWait(driver, 5);
+        wait = new WebDriverWait(driver, TIME_OUT);
     }
 
 

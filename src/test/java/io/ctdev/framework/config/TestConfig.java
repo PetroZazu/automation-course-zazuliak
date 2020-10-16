@@ -10,14 +10,17 @@ public interface TestConfig extends Config {
     @DefaultValue("firefox")
     String browser();
 
-    @DefaultValue("http://18.217.145.6")
+    @DefaultValue("http://3.18.213.48")
     String juiceShopMainPage();
 
-    @DefaultValue("http://18.217.145.6/#/login")
+    @DefaultValue("http://3.18.213.48/#/login")
     String juiceShopLoginPage();
 
-    @DefaultValue("http://18.217.145.6/#/register")
+    @DefaultValue("http://3.18.213.48/#/register")
     String juiceShopSignUpPage();
+
+    @DefaultValue("http://3.18.213.48/#/basket")
+    String juiceShopBucketPage();
 }
 
 

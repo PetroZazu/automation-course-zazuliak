@@ -30,7 +30,7 @@ public class VerifyItemsInBasket extends BaseTestJuiceShop {
     }
 
     @Test
-    public void productNameInCartVerefication() {
+    public void productNameInCartVerification() {
         verifyProductName();
     }
 
