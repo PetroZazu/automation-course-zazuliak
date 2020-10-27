@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 import java.util.Random;
 
 public class IsRandomNumberSatisfiesRange {
-    int minVal = 0;
+    /*int minVal = 0;
     int maxVal = 10;
     Random rand = new Random();
     int random = rand.nextInt(15);
@@ -15,5 +15,5 @@ public class IsRandomNumberSatisfiesRange {
     public void verifyRandNumber() {
         System.out.println(random);
         Assert.assertTrue(random >= minVal && random <= maxVal);
-    }
+    }*/
 }

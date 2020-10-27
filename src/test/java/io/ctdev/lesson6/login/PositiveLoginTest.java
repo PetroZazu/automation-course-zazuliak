@@ -32,7 +32,7 @@ public class PositiveLoginTest {
 
         loginPage.fillPasswordTextBox(user.getPassword());
 
-        loginPage.clickOnSubmitLoginButton();
+        loginPage.clickOnSubmitLoginButton(); 
 
         loginPage.clickOnAccountButton();
 

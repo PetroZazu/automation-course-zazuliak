@@ -32,6 +32,9 @@ public class ProductItemsDescription {
             case "Juice Shop Adversary Trading Card (Common)": {
                 return "Common rarity \"Juice Shop\" card for the Adversary Trading Cards CCG.";
             }
+            case "Juice Shop Adversary Trading Card (Super Rare)": {
+                return "Super rare \"Juice Shop\" card with holographic foil-coating for the Adversary Trading Cards CCG.";
+            }
             case "Juice Shop Artwork": {
                 return "Unique masterpiece painted with different kinds of juice on 90g/m² lined paper.";
             }

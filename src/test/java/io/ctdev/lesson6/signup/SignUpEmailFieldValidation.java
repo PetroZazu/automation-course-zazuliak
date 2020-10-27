@@ -23,6 +23,7 @@ public class SignUpEmailFieldValidation {
     @BeforeClass
     public void setUP() {
         signUpPage.openPage();
+        signUpPage.closeWelcomeAndCookiesPopUps();
         waitForPageToLoad(driver);
     }
 

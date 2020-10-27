@@ -21,6 +21,8 @@ public interface TestConfig extends Config {
 
     @DefaultValue("http://3.18.213.48/#/basket")
     String juiceShopBucketPage();
+
+    boolean remote();
 }
 
 

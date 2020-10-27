@@ -5,6 +5,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class WebDriverSingleton {
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
@@ -14,16 +19,33 @@ public class WebDriverSingleton {
     }
 
     public static WebDriver getDriver() {
+
         if (driver.get() == null) {
             switch (TestConfig.cfg.browser()) {
-                case ("firefox"): {
-                    WebDriverManager.firefoxdriver().setup();
-                    driver.set(new FirefoxDriver());
-                    break;
+                case "firefox": {
+                    if (TestConfig.cfg.remote()) {
+                        try {
+                            driver.set(new RemoteWebDriver(new URL("http://localhost:2222/wd/hub"), DesiredCapabilities.firefox()));
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        WebDriverManager.firefoxdriver().setup();
+                        driver.set(new FirefoxDriver());
+                        break;
+                    }
                 }
                 default: {
-                    WebDriverManager.chromedriver().setup();
-                    driver.set(new ChromeDriver());
+                    if (TestConfig.cfg.remote()) {
+                        try {
+                            driver.set(new RemoteWebDriver(new URL("http://localhost:2222/wd/hub"), DesiredCapabilities.chrome()));
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        WebDriverManager.chromedriver().setup();
+                        driver.set(new ChromeDriver());
+                    }
                 }
             }
             driver.get().manage().window().maximize();
@@ -31,10 +53,14 @@ public class WebDriverSingleton {
         return driver.get();
     }
 
-    public static void closeDriver()
-    {
-        if (driver.get() != null)
-        driver.get().close();
-        driver.remove();
+    public static void closeDriver() {
+        if (driver.get() != null) {
+            System.out.println("Closing test web driver!");
+            //driver.get().close();
+            driver.get().quit();
+            driver.remove();
+        }
+
+
     }
 }

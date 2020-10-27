@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 
 public class BrowserLaunchTest {
-    WebDriver driver;
+   /* WebDriver driver;
 
     @BeforeClass
     public void beforeClass() {
@@ -27,7 +27,7 @@ public class BrowserLaunchTest {
     @AfterClass
     public void afterClass() {
         driver.quit();
-    }
+    }*/
 
 
 }

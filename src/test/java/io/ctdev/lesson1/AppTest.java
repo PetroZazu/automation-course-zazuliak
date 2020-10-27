@@ -8,13 +8,13 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertTrue;
 
 public class AppTest {
-    @Test
+   /* @Test
     public void shouldAnswerWithTrue() throws InterruptedException {
         WebDriver driver = new ChromeDriver();
         driver.get("https://test.salesforce.com/");
         Thread.sleep(10000);
         driver.quit();
-    }
+    }*/
 
 
 

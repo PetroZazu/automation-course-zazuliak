@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 
 public class VerifySalesforceTitle {
-    WebDriver driver;
+    /*WebDriver driver;
     ChromeOptions options;
 
     @BeforeSuite
@@ -36,6 +36,6 @@ public class VerifySalesforceTitle {
     public void closeBrowser() throws InterruptedException {
         Thread.sleep(4000);
         driver.quit();
-    }
+    }*/
 
 }

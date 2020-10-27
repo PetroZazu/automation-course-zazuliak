@@ -139,22 +139,22 @@ public class SignUpPage extends AbstractPage {
 
     public Boolean isErrorAboutAlreadyExistsEmailDisplayed() {
         System.out.println("Is 'Email must be unique' error displayed?");
-        return waitUntilDisplayed(alreadyExistsEmailErrorMessage, 4).isDisplayed();
+        return waitUntilDisplayed(alreadyExistsEmailErrorMessage, 10).isDisplayed();
     }
 
     public Boolean isErrorWhenPasswordFieldEmptyDisplayed() {
         System.out.println("Is 'Please provide a password.' error displayed?");
-        return waitUntilDisplayed(emptyPasswordFieldErrorMessage, 2).isDisplayed();
+        return waitUntilDisplayed(emptyPasswordFieldErrorMessage, 10).isDisplayed();
     }
 
     public Boolean isErrorWhenRepeatPasswordFieldEmptyDisplayed() {
         System.out.println("Is 'Please repeat your password.' error displayed?");
-        return waitUntilDisplayed(emptyRepeatPasswordFieldErrorMessage, 2).isDisplayed();
+        return waitUntilDisplayed(emptyRepeatPasswordFieldErrorMessage, 10).isDisplayed();
     }
 
     public Boolean isErrorWhenPasswordTooShortOrTooLongDisplayed() {
         System.out.println("Is 'Password must be 5-20 characters long.' error displayed?");
-        return waitUntilDisplayed(shortOrTooLongPasswordErrorMessage, 2).isDisplayed();
+        return waitUntilDisplayed(shortOrTooLongPasswordErrorMessage, 10).isDisplayed();
     }
 
     public Boolean isMessageWhenPasswordHasCorrectLengthDisplayed() {
@@ -164,7 +164,7 @@ public class SignUpPage extends AbstractPage {
 
     public Boolean isPasswordsDoNotMatchErrorDisplayed() {
         System.out.println("Is 'Passwords do not match' error displayed?");
-        return waitUntilDisplayed(passwordsDoNotMatchErrorMessage, 5).isDisplayed();
+        return waitUntilDisplayed(passwordsDoNotMatchErrorMessage, 10).isDisplayed();
     }
 
     public Boolean isRegisterButtonInNotActiveState() {

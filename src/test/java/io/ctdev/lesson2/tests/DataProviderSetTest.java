@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 
 public class DataProviderSetTest {
-    private String login;
+    /*private String login;
     private String pass;
 
     @Factory(dataProvider = "dataProvider")
@@ -28,5 +28,5 @@ public class DataProviderSetTest {
         System.out.println("login is: " + login);
         System.out.println("Pass is: " + pass);
 
-    }
+    }*/
 }

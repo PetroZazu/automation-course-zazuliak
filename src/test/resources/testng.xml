@@ -1,9 +1,10 @@
-<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="regression" verbose="1" configfailurepolicy="continue" parallel="classes" thread-count="2">
-    <test name="regression testing">
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Regression Suite" verbose="1" configfailurepolicy="continue" parallel="none" thread-count="1">
+    <test name="Regression Testing">
         <packages>
-            <package name="io.ctdev.lesson2.*" />
+            <package name="io.ctdev.lesson6.login.*"/>
+            <package name="io.ctdev.lesson6.signup.*"/>
+            <package name="io.ctdev.lesson6.products.*"/>
         </packages>
     </test>
-
 </suite>
