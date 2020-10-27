@@ -3,22 +3,17 @@ package io.ctdev.lesson6.products;
 import io.ctdev.framework.pages.bucket.BasketPage;
 import io.ctdev.framework.pages.login.LoginPage;
 import io.ctdev.framework.pages.main.AllProductsPage;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
+import io.ctdev.lesson6.BaseTest;
+
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
-import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
-import static io.ctdev.framework.pages.AbstractPage.waitForPageToLoad;
-
-public class VerifyOneProductInfoInBasket {
-    private WebDriver driver = getDriver();
+public class VerifyOneProductInfoInBasket extends BaseTest {
     private SoftAssert softAssert = new SoftAssert();
-    private AllProductsPage allProductsPage = new AllProductsPage(driver);
-    private LoginPage loginPage = new LoginPage(driver);
-    private BasketPage basketPage = new BasketPage(driver);
+    private AllProductsPage allProductsPage;
+    private LoginPage loginPage;
+    private BasketPage basketPage;
     private int productPositionNumber;
     private String productName;
     private String productImgLink;
@@ -26,6 +21,9 @@ public class VerifyOneProductInfoInBasket {
 
     @BeforeClass
     public void setUP() {
+        basketPage = new BasketPage(driver);
+        loginPage = new LoginPage(driver);
+        allProductsPage = new AllProductsPage(driver);
         productPositionNumber = allProductsPage.selectRandomProductNumber(12);
         loginPage.openPage();
         loginPage.closeWelcomeAndCookiesPopUps();
@@ -50,9 +48,4 @@ public class VerifyOneProductInfoInBasket {
         softAssert.assertAll();
     }
 
-
-    @AfterClass
-    public void afterClass() {
-        closeDriver();
-    }
 }

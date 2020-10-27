@@ -2,20 +2,16 @@ package io.ctdev.lesson6.products;
 
 import io.ctdev.framework.model.ProductItemsDescription;
 import io.ctdev.framework.pages.main.AllProductsPage;
-import org.openqa.selenium.WebDriver;
+import io.ctdev.lesson6.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
-import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 import static io.ctdev.framework.pages.AbstractPage.waitForPageToLoad;
 
-public class VerifyProductInfoPopUpVsPage {
-    private WebDriver driver = getDriver();
-    private AllProductsPage allProductsPage = new AllProductsPage(driver);
+public class VerifyProductInfoPopUpVsPage extends BaseTest {
+    private AllProductsPage allProductsPage;
     private ProductItemsDescription productItemsDescription;
 
     private int productPositionNumber;
@@ -26,6 +22,7 @@ public class VerifyProductInfoPopUpVsPage {
 
     @BeforeClass
     public void setUp() {
+        allProductsPage = new AllProductsPage(driver);
         productItemsDescription = new ProductItemsDescription();
         productPositionNumber = allProductsPage.selectRandomProductNumber(12);
 
@@ -72,11 +69,5 @@ public class VerifyProductInfoPopUpVsPage {
         Assert.assertTrue(allProductsPage.getItemDescriptionTextInPopUp().equals(productItemsDescription.getItemDescriptionByName(productNameOnPage)));
 
     }
-
-    @AfterClass
-    public void afterClass() {
-        closeDriver();
-    }
-
 
 }

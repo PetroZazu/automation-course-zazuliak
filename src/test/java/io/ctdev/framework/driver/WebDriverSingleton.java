@@ -25,7 +25,7 @@ public class WebDriverSingleton {
                 case "firefox": {
                     if (TestConfig.cfg.remote()) {
                         try {
-                            driver.set(new RemoteWebDriver(new URL("http://localhost:2222/wd/hub"), DesiredCapabilities.firefox()));
+                            driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.firefox()));
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
                         }
@@ -34,11 +34,12 @@ public class WebDriverSingleton {
                         driver.set(new FirefoxDriver());
                         break;
                     }
+                    break;
                 }
                 default: {
                     if (TestConfig.cfg.remote()) {
                         try {
-                            driver.set(new RemoteWebDriver(new URL("http://localhost:2222/wd/hub"), DesiredCapabilities.chrome()));
+                            driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome()));
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
                         }

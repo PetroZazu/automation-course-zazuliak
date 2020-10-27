@@ -1,22 +1,18 @@
 package io.ctdev.lesson6.signup;
 
 import io.ctdev.framework.pages.signup.SignUpPage;
-import org.openqa.selenium.WebDriver;
+import io.ctdev.lesson6.BaseTest;
+
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
-import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 import static io.ctdev.framework.pages.AbstractPage.waitForPageToLoad;
 
-public class SignUpPasswordFieldsValidation {
-    private WebDriver driver = getDriver();
-    private SignUpPage signUpPage = new SignUpPage(driver);
+public class SignUpPasswordFieldsValidation extends BaseTest {
+    private SignUpPage signUpPage;
     private String validEmailType = "zazazaazazaza@yopmail.com";
-    private String validPasswordType = "Azerty12!!";
     private String password4symbols = "1234";
     private String password21symbols = "123qwe123qwe123qwe123";
     private String password5symbols = "12345";
@@ -24,9 +20,10 @@ public class SignUpPasswordFieldsValidation {
 
     @BeforeClass
     public void setUP() {
+        signUpPage = new SignUpPage(driver);
         signUpPage.openPage();
         signUpPage.closeWelcomeAndCookiesPopUps();
-       // waitForPageToLoad(driver);
+        // waitForPageToLoad(driver);
     }
 
     @AfterMethod
@@ -87,11 +84,5 @@ public class SignUpPasswordFieldsValidation {
         Assert.assertTrue(signUpPage.isPasswordsDoNotMatchErrorDisplayed());
         Assert.assertTrue(signUpPage.isRegisterButtonInNotActiveState());
     }
-
-    @AfterClass
-    public void afterClass() {
-        closeDriver();
-    }
-
 
 }

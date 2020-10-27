@@ -1,23 +1,20 @@
 package io.ctdev.lesson6.login;
 
+import io.ctdev.framework.config.TestConfig;
 import io.ctdev.framework.model.JuiceShopUser;
 import io.ctdev.framework.model.JuiceShopUserBuilder;
 import io.ctdev.framework.pages.login.LoginPage;
-import org.openqa.selenium.WebDriver;
+import io.ctdev.lesson6.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 
-import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
-import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 import static io.ctdev.framework.pages.AbstractPage.waitForPageToLoad;
 
-public class NegativeLoginTest {
+public class NegativeLoginTest extends BaseTest {
 
-    private WebDriver driver = getDriver();
     private LoginPage loginPage;
     private JuiceShopUser User1ValidEmailInvalidPassword;
     private JuiceShopUser User2InvalidEmailValidPassword;
@@ -33,13 +30,16 @@ public class NegativeLoginTest {
 
     @AfterMethod
     public void afterMethod() {
+        loginPage.clearEmailAndPasswordFields();
         System.out.println("Go to the login page again");
-        driver.navigate().refresh();
+        driver.get(TestConfig.cfg.juiceShopLoginPage());
         waitForPageToLoad(driver);
     }
 
     @Test
     public void loginWhenInvalidPasswordValidEmail() {
+        System.out.println();
+        System.out.println("loginWhenInvalidPasswordValidEmail test");
 
         System.out.println("Fill valid email");
         loginPage.fillEmailTextBox(User1ValidEmailInvalidPassword.getEmail());
@@ -55,6 +55,8 @@ public class NegativeLoginTest {
 
     @Test
     public void loginWhenInvalidEmailValidPassword() {
+        System.out.println();
+        System.out.println("loginWhenInvalidEmailValidPassword test");
 
         System.out.println("Fill invalid email");
         loginPage.fillEmailTextBox(User2InvalidEmailValidPassword.getEmail());
@@ -70,6 +72,8 @@ public class NegativeLoginTest {
 
     @Test
     public void loginWhenEmptyPassword() {
+        System.out.println();
+        System.out.println("loginWhenEmptyPassword test");
 
         System.out.println("Fill valid email");
         loginPage.fillEmailTextBox(User1ValidEmailInvalidPassword.getEmail());
@@ -81,11 +85,6 @@ public class NegativeLoginTest {
 
         System.out.println("Verify that Login button is in inactive state");
         Assert.assertTrue(loginPage.isSubmitButtonInactive());
-    }
-
-    @AfterClass
-    public void afterClass() {
-        closeDriver();
     }
 
 }

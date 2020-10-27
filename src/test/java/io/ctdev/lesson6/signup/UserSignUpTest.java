@@ -3,25 +3,23 @@ package io.ctdev.lesson6.signup;
 import io.ctdev.framework.model.JuiceShopUser;
 import io.ctdev.framework.model.JuiceShopUserBuilder;
 import io.ctdev.framework.pages.signup.SignUpPage;
+import io.ctdev.lesson6.BaseTest;
 import net.bytebuddy.utility.RandomString;
-import org.openqa.selenium.WebDriver;
+
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
-import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
 import static io.ctdev.framework.pages.AbstractPage.waitForPageToLoad;
 
-public class UserSignUpTest {
-    private WebDriver driver = getDriver();
-    private SignUpPage signUpPage = new SignUpPage(driver);
+public class UserSignUpTest extends BaseTest {
+    private SignUpPage signUpPage;
     private RandomString randomString = new RandomString(7);
     private JuiceShopUser newUser;
 
     @BeforeClass
     public void setUP() {
+        signUpPage = new SignUpPage(driver);
         signUpPage.openPage();
         signUpPage.closeWelcomeAndCookiesPopUps();
         waitForPageToLoad(driver);
@@ -41,8 +39,4 @@ public class UserSignUpTest {
         Assert.assertTrue(signUpPage.isRegistrationSuccessfulPopUpDisplayed());
     }
 
-    @AfterClass
-    public void afterClass() {
-        closeDriver();
-    }
 }

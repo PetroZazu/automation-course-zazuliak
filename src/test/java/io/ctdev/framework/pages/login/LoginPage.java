@@ -92,6 +92,11 @@ public class LoginPage extends AbstractPage {
         driver.findElement(loginPageTitleTextElement).click();
     }
 
+    public void clearEmailAndPasswordFields() {
+        driver.findElement(passwordTextBox).clear();
+        driver.findElement(emailTextBoxElement).clear();
+    }
+
     public boolean isInvalidLoginOrPasswordErrorMessageDisplayed() {
         return waitUntilDisplayed(invalidLoginOrPasswordErrorElement, 4).isDisplayed();
     }

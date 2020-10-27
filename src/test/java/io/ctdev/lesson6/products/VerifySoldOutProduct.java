@@ -1,25 +1,21 @@
 package io.ctdev.lesson6.products;
 
-
 import io.ctdev.framework.pages.login.LoginPage;
 import io.ctdev.framework.pages.main.AllProductsPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import io.ctdev.lesson6.BaseTest;
+
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import static io.ctdev.framework.driver.WebDriverSingleton.closeDriver;
-import static io.ctdev.framework.driver.WebDriverSingleton.getDriver;
-
-public class VerifySoldOutProduct {
-    private WebDriver driver = getDriver();
-    private AllProductsPage allProductsPage = new AllProductsPage(driver);
-    private LoginPage loginPage = new LoginPage(driver);
+public class VerifySoldOutProduct extends BaseTest {
+    private AllProductsPage allProductsPage;
+    private LoginPage loginPage;
 
     @BeforeClass
     public void setUp() {
+        loginPage = new LoginPage(driver);
+        allProductsPage = new AllProductsPage(driver);
         loginPage.openPage();
         loginPage.closeWelcomeAndCookiesPopUps();
         loginPage.performLoginToTheAccount();
@@ -33,11 +29,5 @@ public class VerifySoldOutProduct {
         allProductsPage.clickAddSoldOutProduct();
         Assert.assertTrue(allProductsPage.isOutOfStockErrorDisplayed());
     }
-
-    @AfterClass
-    public void afterClass() {
-        closeDriver();
-    }
-
 
 }
