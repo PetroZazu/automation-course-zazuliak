@@ -7,7 +7,11 @@ import org.aeonbits.owner.ConfigFactory;
 public interface TestConfig extends Config {
     TestConfig cfg = ConfigFactory.create(TestConfig.class);
 
-    @DefaultValue("firefox")
+    String remoteUrl();
+    String baseUrl();
+    String env();
+
+    @DefaultValue("chrome")
     String browser();
 
     @DefaultValue("http://3.18.213.48")

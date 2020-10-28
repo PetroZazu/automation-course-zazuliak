@@ -4,9 +4,15 @@ import io.ctdev.framework.model.JuiceShopUser;
 import io.ctdev.framework.model.JuiceShopUserBuilder;
 import io.ctdev.framework.pages.login.LoginPage;
 import io.ctdev.lesson6.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+@Epic("SignUp/SignIn")
+@Story("User Login")
 
 public class PositiveLoginTest extends BaseTest {
     JuiceShopUser user;
@@ -21,6 +27,7 @@ public class PositiveLoginTest extends BaseTest {
     }
 
     @Test
+    @Description("Verify ability to login to Juice Shop")
     public void verifyAbilityToLogInWithValidCreds() {
         System.out.println();
         System.out.println("verifyAbilityToLogInWithValidCreds test");

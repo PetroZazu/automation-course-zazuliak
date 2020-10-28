@@ -25,7 +25,12 @@ public class WebDriverSingleton {
                 case "firefox": {
                     if (TestConfig.cfg.remote()) {
                         try {
-                            driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.firefox()));
+                            System.out.println("Firefox browser loaded remote successfully");
+                            DesiredCapabilities capabilities = new DesiredCapabilities();
+                            capabilities.setCapability("browserName", "firefox");
+                            //capabilities.setCapability("browserVersion", "82.0");
+                            capabilities.setCapability("enableVnc", true);
+                            driver.set(new RemoteWebDriver(new URL(TestConfig.cfg.remoteUrl()), capabilities));
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
                         }
@@ -39,7 +44,12 @@ public class WebDriverSingleton {
                 default: {
                     if (TestConfig.cfg.remote()) {
                         try {
-                            driver.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), DesiredCapabilities.chrome()));
+                            System.out.println("Chrome browser loaded remote successfully");
+                            DesiredCapabilities capabilities = new DesiredCapabilities();
+                            capabilities.setCapability("browserName", "chrome");
+                            capabilities.setCapability("browserVersion", "86.0");
+                            capabilities.setCapability("enableVnc", true);
+                            driver.set(new RemoteWebDriver(new URL(TestConfig.cfg.remoteUrl()), capabilities));
                         } catch (MalformedURLException e) {
                             e.printStackTrace();
                         }

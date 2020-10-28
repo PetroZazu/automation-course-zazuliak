@@ -2,6 +2,7 @@ package io.ctdev.framework.pages.login;
 
 import io.ctdev.framework.config.TestConfig;
 import io.ctdev.framework.pages.AbstractPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
@@ -32,12 +33,15 @@ public class LoginPage extends AbstractPage {
         this.wait = new WebDriverWait(driver, TIME_OUT);
     }
 
+
     @Override
+    @Step("Open Login page")
     public void openPage() {
         System.out.println("Open Login Web Page");
         driver.get(TestConfig.cfg.juiceShopLoginPage());
     }
 
+    @Step("Fill Email, Password fields and click login button")
     public void performLoginToTheAccount() {
         fillEmailTextBox("pzzzzazuliak@yopmail.com");
         fillPasswordTextBox("@z$rt&12!!azazaza");
@@ -45,27 +49,31 @@ public class LoginPage extends AbstractPage {
         clickOnAccountButton();
     }
 
+    @Step("Click on the 'Account' button")
     public void clickOnAccountButton() {
         System.out.println("Click on the 'Account' button");
         driver.findElement(navBarAccountElement).click();
     }
 
+    @Step
     public void clickOnLoginButton() {
         System.out.println("Click on the 'LogIn' button");
         driver.findElement(navBarLoginButtonElement).click();
     }
 
-
+    @Step("Click on the 'Submit Login' button")
     public void clickOnSubmitLoginButton() {
         System.out.println("Click on the 'Submit Login' Button");
         waitUntilDisplayed(submitLoginButtonElement, 4).click();
     }
 
+    @Step("Fill 'Email' text box")
     public void fillEmailTextBox(String email) {
         System.out.println("Fill 'Email' field with text: " + email);
         waitUntilDisplayed(emailTextBoxElement, 5).sendKeys(email);
     }
 
+    @Step("Fill 'Password' text box")
     public void fillPasswordTextBox(String password) {
         System.out.println("Fill 'Password' field with text: " + password);
         waitUntilDisplayed(passwordTextBox, 5).sendKeys(password);
@@ -87,11 +95,13 @@ public class LoginPage extends AbstractPage {
         return actualUserName;
     }
 
+    @Step
     public void clickInAndClickOutPasswordTextBox() {
         driver.findElement(passwordTextBox).click();
         driver.findElement(loginPageTitleTextElement).click();
     }
 
+    @Step
     public void clearEmailAndPasswordFields() {
         driver.findElement(passwordTextBox).clear();
         driver.findElement(emailTextBoxElement).clear();
