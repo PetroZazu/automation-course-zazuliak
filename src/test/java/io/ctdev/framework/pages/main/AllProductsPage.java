@@ -124,7 +124,7 @@ public class AllProductsPage extends AbstractPage {
 
     public Boolean isOutOfStockErrorDisplayed() {
         try {
-            return waitUntilDisplayed(outOfStockErrorMessage, 2).isDisplayed();
+            return waitUntilDisplayed(outOfStockErrorMessage, 7).isDisplayed();
         } catch (TimeoutException ex) {
             return false;
         }
