@@ -3,6 +3,8 @@
     <test name="Regression Testing">
         <packages>
             <package name="io.ctdev.lesson6.products"/>
+            <package name="io.ctdev.lesson6.login"/>
+            <package name="io.ctdev.lesson6.signup"/>
         </packages>
     </test>
 </suite>

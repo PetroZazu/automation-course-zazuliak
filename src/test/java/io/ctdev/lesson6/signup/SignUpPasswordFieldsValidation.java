@@ -1,5 +1,6 @@
 package io.ctdev.lesson6.signup;
 
+import io.ctdev.framework.config.TestConfig;
 import io.ctdev.framework.pages.signup.SignUpPage;
 import io.ctdev.lesson6.BaseTest;
 
@@ -28,9 +29,8 @@ public class SignUpPasswordFieldsValidation extends BaseTest {
 
     @AfterMethod
     public void afterEachMethod() {
-        driver.navigate().refresh();
-        waitForPageToLoad(driver);
-        driver.navigate().refresh();
+        signUpPage.clearAllFields();
+        driver.get(TestConfig.cfg.juiceShopSignUpPage());
         waitForPageToLoad(driver);
     }
 

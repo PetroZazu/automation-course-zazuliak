@@ -127,6 +127,13 @@ public class SignUpPage extends AbstractPage {
 
     }
 
+    public void clearAllFields() {
+        waitUntilDisplayed(emailTextBoxElement, 2).clear();
+        waitUntilDisplayed(passwordTextBoxElement, 2).clear();
+        waitUntilDisplayed(repeatPasswordTextBoxElemnt, 2).clear();
+        waitUntilDisplayed(secQuestionAnswerTextBoxElement, 2).clear();
+    }
+
     public Boolean isErrorWhenEmailFieldBlankDisplayed() {
         System.out.println("Is 'Please provide an email address' error displayed?");
         return waitUntilDisplayed((emptyEmailFieldErrorMessage), 4).isDisplayed();
