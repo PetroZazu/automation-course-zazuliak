@@ -90,7 +90,7 @@ public class SignUpPage extends AbstractPage {
         System.out.println("Click on the register button");
         driver.findElement(registerButtonElement).click();
     }
-    
+
     public void clearAllFields() {
         waitUntilDisplayed(emailTextBoxElement, 2).clear();
         waitUntilDisplayed(passwordTextBoxElement, 2).clear();
@@ -105,7 +105,7 @@ public class SignUpPage extends AbstractPage {
 
     public Boolean isErrorAboutInvalidEmailDisplayed() {
         System.out.println("Is 'Email address is not valid.' error is displayed?");
-        return driver.findElement(invalidEmailErrorMessage).isDisplayed();
+        return waitUntilDisplayed(invalidEmailErrorMessage, 4).isDisplayed();
     }
 
     public Boolean isErrorAboutAlreadyExistsEmailDisplayed() {
@@ -130,7 +130,7 @@ public class SignUpPage extends AbstractPage {
 
     public Boolean isMessageWhenPasswordHasCorrectLengthDisplayed() {
         System.out.println("Is message about correct password length displayed?");
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(correctPasswordLengthMessage)).isDisplayed();
+        return waitUntilDisplayed(correctPasswordLengthMessage, 5).isDisplayed();
     }
 
     public Boolean isPasswordsDoNotMatchErrorDisplayed() {
@@ -156,4 +156,8 @@ public class SignUpPage extends AbstractPage {
         waitUntilDisplayed(repeatPasswordTextBoxElemnt, 3).click();
     }
 
+    public void hoverInToTheEmailTextBox() {
+        waitUntilDisplayed(emailTextBoxElement, 3).click();
+    }
 }
+

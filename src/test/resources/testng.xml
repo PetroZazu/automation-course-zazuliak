@@ -3,6 +3,8 @@
     <test name="Regression Testing">
         <classes>
             <class name="io.ctdev.lesson6.signup.SignUpPasswordFieldsValidation"/>
+            <class name="io.ctdev.lesson6.signup.SignUpEmailFieldValidation"/>
+            <class name="io.ctdev.lesson6.signup.UserSignUpTest"/>
         </classes>
     </test>
 </suite>

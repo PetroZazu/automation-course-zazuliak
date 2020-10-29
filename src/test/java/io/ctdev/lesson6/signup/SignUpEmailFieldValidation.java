@@ -34,7 +34,12 @@ public class SignUpEmailFieldValidation extends BaseTest {
 
     @Test
     public void verifyErrorWhenEmailBlank() {
-        signUpPage.fillAllFieldsExceptOfEmail(password);
+        signUpPage.hoverInToTheEmailTextBox();
+        signUpPage.fillPasswordField(password);
+        signUpPage.fillRepeatPasswordField(password);
+        signUpPage.openSeqQuestionDropDownList();
+        signUpPage.chooseOptionFromSecQuestionDropDownList();
+        signUpPage.fillSecurityQuestionTextBox("Abrakadabra");
         Assert.assertTrue(signUpPage.isErrorWhenEmailFieldBlankDisplayed());
         Assert.assertTrue(signUpPage.isRegisterButtonInNotActiveState());
     }
@@ -42,16 +47,24 @@ public class SignUpEmailFieldValidation extends BaseTest {
 
     @Test
     public void verifyErrorWhenEmailInvalid() {
-        signUpPage.fillAllFieldsExceptOfEmail(password);
         signUpPage.fillEmailField(invalidEmail);
+        signUpPage.fillPasswordField(password);
+        signUpPage.fillRepeatPasswordField(password);
+        signUpPage.openSeqQuestionDropDownList();
+        signUpPage.chooseOptionFromSecQuestionDropDownList();
+        signUpPage.fillSecurityQuestionTextBox("Abrakadabra");
         signUpPage.isErrorAboutInvalidEmailDisplayed();
         signUpPage.isRegisterButtonInNotActiveState();
     }
 
     @Test
     public void verifyErrorWhenEmailAlreadyExist() {
-        signUpPage.fillAllFieldsExceptOfEmail(password);
         signUpPage.fillEmailField(validEmail);
+        signUpPage.fillPasswordField(password);
+        signUpPage.fillRepeatPasswordField(password);
+        signUpPage.openSeqQuestionDropDownList();
+        signUpPage.chooseOptionFromSecQuestionDropDownList();
+        signUpPage.fillSecurityQuestionTextBox("Abrakadabra");
         signUpPage.clickOnTheRegisterButton();
         signUpPage.isErrorAboutAlreadyExistsEmailDisplayed();
     }
