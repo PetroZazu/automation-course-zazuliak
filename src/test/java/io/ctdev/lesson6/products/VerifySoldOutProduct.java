@@ -31,7 +31,6 @@ public class VerifySoldOutProduct extends BaseTest {
         allProductsPage.scrollToTheBottomOfThePage();
         allProductsPage.goToTheNextPage();
         waitForPageToLoad(driver);
-        driver.navigate().refresh();
         allProductsPage.clickAddSoldOutProduct();
         Assert.assertTrue(allProductsPage.isOutOfStockErrorDisplayed());
     }

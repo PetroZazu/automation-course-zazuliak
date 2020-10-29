@@ -33,6 +33,7 @@ public class AllProductsPage extends AbstractPage {
     private By youCanOrderUpToOneItemErrorMessage = By.xpath("//span[contains(text(), 'You can order only up to 1 items')]");
     private By productPlacedConfirmPopUpElement = By.xpath("//span[contains(text(), 'Added') or contains(text(), 'Placed')]");
     private By pageBottomElement = By.xpath("//div[@class='mat-paginator-container']");
+    private By xButtonInPopUpElement = By.xpath("//button/span[text()='X']");
 
     private int countOfAddedProduct;
 
@@ -64,8 +65,9 @@ public class AllProductsPage extends AbstractPage {
                 System.out.println(countOfAddedProduct + " item/s of current product was added to the cart instead of " + homManyItemsToAdd);
                 break;
             }
-            waitUntilDisplayed(productPlacedConfirmPopUpElement, 2);
-            wait.until(ExpectedConditions.invisibilityOfElementLocated(productPlacedConfirmPopUpElement));
+            //waitUntilDisplayed(productPlacedConfirmPopUpElement, 3);
+           // wait.until(ExpectedConditions.invisibilityOfElementLocated(productPlacedConfirmPopUpElement));
+            //waitUntilDisplayed(xButtonInPopUpElement, 4).click();
             countOfAddedProduct = i;
         }
         System.out.println("To the cart was added " + countOfAddedProduct + " item/s of selected product");
@@ -82,7 +84,7 @@ public class AllProductsPage extends AbstractPage {
 
     public void clickAddSoldOutProduct() {
         System.out.println("Try to add sold out product to the cart");
-        waitUntilDisplayed(soldOutProductAddButton, 3).click();
+        waitUntilDisplayed(soldOutProductAddButton, 7).click();
     }
 
     public int getHowManyProductsAdded() {
