@@ -115,7 +115,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public boolean isEmptyPasswordErrorDisplayed() {
-        return waitUntilDisplayed(pleaseProvidePasswordErrorElement, 4).isDisplayed();
+        return waitUntilDisplayed(pleaseProvidePasswordErrorElement, 10).isDisplayed();
     }
 
     public boolean isSubmitButtonInactive() {
