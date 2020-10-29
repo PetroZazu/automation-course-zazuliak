@@ -2,6 +2,7 @@ package io.ctdev.framework.pages.signup;
 
 import io.ctdev.framework.config.TestConfig;
 import io.ctdev.framework.pages.AbstractPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
