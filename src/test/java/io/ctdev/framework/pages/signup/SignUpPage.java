@@ -90,43 +90,7 @@ public class SignUpPage extends AbstractPage {
         System.out.println("Click on the register button");
         driver.findElement(registerButtonElement).click();
     }
-
-    public void fillAllFieldsExceptOfEmail(String password) {
-        System.out.println("Click on the 'Email' Text box but do not send keys inside");
-        //clickEmailTextBox();
-        waitUntilDisplayed(emailTextBoxElement, 2).sendKeys(Keys.TAB);
-
-        fillPasswordField(password);
-
-        fillRepeatPasswordField(password);
-
-        openSeqQuestionDropDownList();
-
-        chooseOptionFromSecQuestionDropDownList();
-
-        System.out.println("Fill 'Answer' field with text");
-        fillSecurityQuestionTextBox("Security question text :)");
-
-    }
-
-
-    public void fillAllFieldsExceptOfBothPasswordFields(String email) {
-        System.out.println("Enter email: '" + email + "' in to the 'Email' text box");
-        fillEmailField(email);
-
-        waitUntilDisplayed(passwordTextBoxElement, 2).sendKeys(Keys.TAB);
-
-        System.out.println("Skip filling 'Repeat Password' Field");
-        waitUntilDisplayed(repeatPasswordTextBoxElemnt, 2).sendKeys(Keys.TAB);
-
-        openSeqQuestionDropDownList();
-        chooseOptionFromSecQuestionDropDownList();
-
-        System.out.println("Fill 'Answer' field with text");
-        fillSecurityQuestionTextBox("Security question text :)");
-
-    }
-
+    
     public void clearAllFields() {
         waitUntilDisplayed(emailTextBoxElement, 2).clear();
         waitUntilDisplayed(passwordTextBoxElement, 2).clear();
@@ -184,5 +148,12 @@ public class SignUpPage extends AbstractPage {
         return waitUntilDisplayed(successfulRegistrationPopUpMessage, 3).isDisplayed();
     }
 
+    public void hoverInToThePasswordTextBox() {
+        waitUntilDisplayed(passwordTextBoxElement, 3).click();
+    }
+
+    public void hoverInToTheRepeatPasswordTextBox() {
+        waitUntilDisplayed(repeatPasswordTextBoxElemnt, 3).click();
+    }
 
 }
