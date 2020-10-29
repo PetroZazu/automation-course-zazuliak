@@ -28,7 +28,7 @@ public class WebDriverSingleton {
                             System.out.println("Firefox browser loaded remote successfully");
                             DesiredCapabilities capabilities = new DesiredCapabilities();
                             capabilities.setCapability("browserName", "firefox");
-                            //capabilities.setCapability("browserVersion", "82.0");
+                            capabilities.setCapability("browserVersion", "81.0");
                             capabilities.setCapability("enableVnc", true);
                             driver.set(new RemoteWebDriver(new URL(TestConfig.cfg.remoteUrl()), capabilities));
                         } catch (MalformedURLException e) {
