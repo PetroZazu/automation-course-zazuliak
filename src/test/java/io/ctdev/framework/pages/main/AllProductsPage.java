@@ -65,9 +65,8 @@ public class AllProductsPage extends AbstractPage {
                 System.out.println(countOfAddedProduct + " item/s of current product was added to the cart instead of " + homManyItemsToAdd);
                 break;
             }
-            //waitUntilDisplayed(productPlacedConfirmPopUpElement, 3);
-           // wait.until(ExpectedConditions.invisibilityOfElementLocated(productPlacedConfirmPopUpElement));
-            //waitUntilDisplayed(xButtonInPopUpElement, 4).click();
+            //waitUntilDisplayed(productPlacedConfirmPopUpElement, 2);
+            wait.until(ExpectedConditions.invisibilityOfElementLocated(productPlacedConfirmPopUpElement));
             countOfAddedProduct = i;
         }
         System.out.println("To the cart was added " + countOfAddedProduct + " item/s of selected product");
@@ -126,7 +125,7 @@ public class AllProductsPage extends AbstractPage {
 
     public Boolean isOutOfStockErrorDisplayed() {
         try {
-            return waitUntilDisplayed(outOfStockErrorMessage, 7).isDisplayed();
+            return waitUntilDisplayed(outOfStockErrorMessage, 2).isDisplayed();
         } catch (TimeoutException ex) {
             return false;
         }
@@ -134,7 +133,7 @@ public class AllProductsPage extends AbstractPage {
 
     public Boolean isYouCanOrderUpToOneItemErrorDisplayed() {
         try {
-            return waitUntilDisplayed(youCanOrderUpToOneItemErrorMessage, 1).isDisplayed();
+            return waitUntilDisplayed(youCanOrderUpToOneItemErrorMessage, 2).isDisplayed();
         } catch (TimeoutException ex) {
             return false;
         }
