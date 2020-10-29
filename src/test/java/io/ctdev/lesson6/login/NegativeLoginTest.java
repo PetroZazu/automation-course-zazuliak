@@ -32,7 +32,7 @@ public class NegativeLoginTest extends BaseTest {
     public void afterMethod() {
         loginPage.clearEmailAndPasswordFields();
         System.out.println("Go to the login page again");
-        driver.get(TestConfig.cfg.juiceShopLoginPage());
+        driver.navigate().refresh();
         waitForPageToLoad(driver);
     }
 
@@ -78,7 +78,8 @@ public class NegativeLoginTest extends BaseTest {
         System.out.println("Fill valid email");
         loginPage.fillEmailTextBox(User1ValidEmailInvalidPassword.getEmail());
 
-        loginPage.clickInAndClickOutPasswordTextBox();
+        loginPage.clickInThePasswordField();
+        loginPage.clickInTheEmailField();
 
         System.out.println("Verify that empty password field error appears");
         Assert.assertTrue(loginPage.isEmptyPasswordErrorDisplayed());

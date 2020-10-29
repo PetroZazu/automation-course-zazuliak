@@ -55,11 +55,6 @@ public class LoginPage extends AbstractPage {
         driver.findElement(navBarAccountElement).click();
     }
 
-    @Step
-    public void clickOnLoginButton() {
-        System.out.println("Click on the 'LogIn' button");
-        driver.findElement(navBarLoginButtonElement).click();
-    }
 
     @Step("Click on the 'Submit Login' button")
     public void clickOnSubmitLoginButton() {
@@ -105,6 +100,14 @@ public class LoginPage extends AbstractPage {
     public void clearEmailAndPasswordFields() {
         driver.findElement(passwordTextBox).clear();
         driver.findElement(emailTextBoxElement).clear();
+    }
+
+    public void clickInTheEmailField() {
+        driver.findElement(emailTextBoxElement).click();
+    }
+
+    public void clickInThePasswordField() {
+        driver.findElement(passwordTextBox).click();
     }
 
     public boolean isInvalidLoginOrPasswordErrorMessageDisplayed() {
