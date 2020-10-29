@@ -39,6 +39,8 @@ public class VerifyProductInfoPopUpVsPage extends BaseTest {
     public void afterMethod() {
         driver.navigate().refresh();
         waitForPageToLoad(driver);
+        driver.navigate().refresh();
+        waitForPageToLoad(driver);
     }
 
     @Test

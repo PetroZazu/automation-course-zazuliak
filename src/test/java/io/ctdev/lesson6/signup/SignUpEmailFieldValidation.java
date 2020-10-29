@@ -28,6 +28,8 @@ public class SignUpEmailFieldValidation extends BaseTest {
     public void afterEachMethod() {
         driver.navigate().refresh();
         waitForPageToLoad(driver);
+        driver.navigate().refresh();
+        waitForPageToLoad(driver);
     }
 
     @Test

@@ -30,6 +30,8 @@ public class SignUpPasswordFieldsValidation extends BaseTest {
     public void afterEachMethod() {
         driver.navigate().refresh();
         waitForPageToLoad(driver);
+        driver.navigate().refresh();
+        waitForPageToLoad(driver);
     }
 
     @Test

@@ -32,15 +32,15 @@ public class BasketPage extends AbstractPage {
     }
 
     public int getProductCount() {
-        return Integer.parseInt(waitUntilDisplayed(countOfProductElement, 3).getText());
+        return Integer.parseInt(waitUntilDisplayed(countOfProductElement, 5).getText());
     }
 
     public String getProductPrice() {
-        return waitUntilDisplayed(productPriceElement, 3).getText();
+        return waitUntilDisplayed(productPriceElement, 5).getText();
     }
 
     public String getProductImgSrc() {
-        return waitUntilDisplayed(productImgSrcElement, 3).getAttribute("src");
+        return waitUntilDisplayed(productImgSrcElement, 5).getAttribute("src");
     }
 
 

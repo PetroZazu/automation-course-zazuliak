@@ -8,6 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import static io.ctdev.framework.pages.AbstractPage.waitForPageToLoad;
+
 public class VerifySoldOutProduct extends BaseTest {
     private AllProductsPage allProductsPage;
     private LoginPage loginPage;
@@ -20,12 +22,16 @@ public class VerifySoldOutProduct extends BaseTest {
         loginPage.closeWelcomeAndCookiesPopUps();
         loginPage.performLoginToTheAccount();
         allProductsPage.openPage();
+        driver.navigate().refresh();
+        waitForPageToLoad(driver);
     }
 
     @Test
     public void verifyInabilityAddSoldOutProductToCart() {
         allProductsPage.scrollToTheBottomOfThePage();
         allProductsPage.goToTheNextPage();
+        waitForPageToLoad(driver);
+        driver.navigate().refresh();
         allProductsPage.clickAddSoldOutProduct();
         Assert.assertTrue(allProductsPage.isOutOfStockErrorDisplayed());
     }
