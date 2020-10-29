@@ -38,7 +38,7 @@ public class VerifyOneProductInfoInBasket extends BaseTest {
         productName = allProductsPage.getProductName(productPositionNumber);
         productImgLink = allProductsPage.getProductImgSrc(productPositionNumber);
         productPrice = allProductsPage.getProductPriceOnPage(productPositionNumber);
-        //allProductsPage.scrollToTheSelectedProduct(productPositionNumber);
+        allProductsPage.scrollToTheSelectedProduct(productPositionNumber);
         allProductsPage.clickAddProductToTheCart(productPositionNumber, 3);
         allProductsPage.goToTheShoppingCart();
         softAssert.assertEquals(basketPage.getProductName(), productName, "Name of the product on page and name of the product in basket, doesn't equals");
