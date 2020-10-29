@@ -2,7 +2,9 @@
 <suite name="Regression Suite" verbose="1" configfailurepolicy="continue" parallel="none" thread-count="1">
     <test name="Regression Testing">
         <packages>
-            <package name="io.ctdev.lesson6"/>
+            <package name="io.ctdev.lesson6.login"/>
+            <package name="io.ctdev.lesson6.signup"/>
+            <package name="io.ctdev.lesson6.products"/>
         </packages>
     </test>
 </suite>
