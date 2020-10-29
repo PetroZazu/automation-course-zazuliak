@@ -15,7 +15,7 @@ public class SignUpPasswordFieldsValidation extends BaseTest {
     private SignUpPage signUpPage;
     private String validEmailType = "zazazaazazaza@yopmail.com";
     private String password4symbols = "1234";
-    private String password21symbols = "123qwe123qwe123qwe123";
+    private String password21symbols = "123qwe123qwe123qwe123123123123123123123123123123";
     private String password5symbols = "12345";
     private String password20symbols = "123qwe123qwe123qwe12";
 
@@ -47,6 +47,7 @@ public class SignUpPasswordFieldsValidation extends BaseTest {
         signUpPage.fillAllFieldsExceptOfBothPasswordFields(validEmailType);
         System.out.println("Fill 'Password' Field with password that has 4 symbols");
         signUpPage.fillPasswordField(password4symbols);
+        signUpPage.fillRepeatPasswordField(password4symbols);
         Assert.assertTrue(signUpPage.isErrorWhenPasswordTooShortOrTooLongDisplayed());
         Assert.assertTrue(signUpPage.isRegisterButtonInNotActiveState());
     }
@@ -56,6 +57,7 @@ public class SignUpPasswordFieldsValidation extends BaseTest {
         signUpPage.fillAllFieldsExceptOfBothPasswordFields(validEmailType);
         System.out.println("Fill 'Password' Field with password that has 21 symbols");
         signUpPage.fillPasswordField(password21symbols);
+        signUpPage.fillRepeatPasswordField(password21symbols);
         Assert.assertTrue(signUpPage.isErrorWhenPasswordTooShortOrTooLongDisplayed());
         Assert.assertTrue(signUpPage.isRegisterButtonInNotActiveState());
     }

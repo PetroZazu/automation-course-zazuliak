@@ -29,7 +29,7 @@ public class SignUpPage extends AbstractPage {
     private By alreadyExistsEmailErrorMessage = By.xpath("//div[contains(text(), 'Email must be unique')]");
     private By emptyPasswordFieldErrorMessage = By.xpath("//mat-error[contains(text(), 'Please provide a password. ')]");
     private By emptyRepeatPasswordFieldErrorMessage = By.xpath("//mat-error[contains(text(), 'Please repeat your password.')]");
-    private By shortOrTooLongPasswordErrorMessage = By.xpath("//mat-error[contains(text(), 'Password must be 5-20 characters long.')]");
+    private By shortOrTooLongPasswordErrorMessage = By.xpath("//mat-error[contains(text(), 'Password must be 5-20')]");
     private By correctPasswordLengthMessage = By.xpath("//em[contains(text(), 'Password must be 5-20 characters long.')]");
     private By passwordsDoNotMatchErrorMessage = By.xpath("//mat-error[contains(text(), 'Passwords do not match')]");
     private By successfulRegistrationPopUpMessage = By.xpath("//div[contains(@id, 'cdk-overlay')]//span[contains(text(), 'Registration completed')]");
@@ -151,7 +151,7 @@ public class SignUpPage extends AbstractPage {
 
     public Boolean isErrorWhenPasswordFieldEmptyDisplayed() {
         System.out.println("Is 'Please provide a password.' error displayed?");
-        return waitUntilDisplayed(emptyPasswordFieldErrorMessage, 10).isDisplayed();
+        return waitUntilDisplayed(emptyPasswordFieldErrorMessage, 5).isDisplayed();
     }
 
     public Boolean isErrorWhenRepeatPasswordFieldEmptyDisplayed() {
