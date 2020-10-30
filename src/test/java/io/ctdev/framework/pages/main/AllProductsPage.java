@@ -125,7 +125,7 @@ public class AllProductsPage extends AbstractPage {
 
     public Boolean isOutOfStockErrorDisplayed() {
         try {
-            return waitUntilDisplayed(outOfStockErrorMessage, 2).isDisplayed();
+            return wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//simple-snack-bar/span"), "We are out of stock"));
         } catch (TimeoutException ex) {
             return false;
         }
