@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductItemsDescription {
-    private List<String> itemsDescription = new ArrayList<String>();
+    private static List<String> itemsDescription = new ArrayList<String>();
 
-    public String getItemDescriptionByName(String productName) {
+    public static String getItemDescriptionByName(String productName) {
         switch (productName) {
             case "Apple Juice (1000ml)": {
                 return "The all-time classic.";
@@ -49,8 +49,10 @@ public class ProductItemsDescription {
         }
     }
 
-    public String getItemDescriptionByPositionNumber(int productPositionNumber) {
-        return itemsDescription.get(productPositionNumber);
+    public static String getItemDescriptionByPositionNumber(int productPositionNumber) {
+        String productDescription = itemsDescription.get(productPositionNumber);
+        System.out.println("Product description is: " + productDescription);
+        return productDescription;
     }
 
 

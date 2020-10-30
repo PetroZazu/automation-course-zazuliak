@@ -46,6 +46,18 @@ public abstract class AbstractPage {
         }
     }
 
+    public WebElement waitUntilAttributeLoaded(WebElement element, String attributeText, int howLongToWaitSeconds) {
+        try {
+            wait = new WebDriverWait(driver, howLongToWaitSeconds);
+            wait.until(ExpectedConditions.attributeToBeNotEmpty(element, attributeText));
+            return element;
+        } finally {
+            wait = new WebDriverWait(driver, TIME_OUT);
+        }
+
+
+    }
+
     public static void waitForPageToLoad(WebDriver driver) {
         ExpectedCondition<Boolean> pageLoad = new
                 ExpectedCondition<Boolean>() {

@@ -33,6 +33,7 @@ public class VerifySoldOutProduct extends BaseTest {
         waitForPageToLoad(driver);
         allProductsPage.clickAddSoldOutProduct();
         Assert.assertTrue(allProductsPage.isOutOfStockErrorDisplayed());
+
     }
 
 }

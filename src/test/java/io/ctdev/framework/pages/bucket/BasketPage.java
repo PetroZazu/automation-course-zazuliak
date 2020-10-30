@@ -28,7 +28,14 @@ public class BasketPage extends AbstractPage {
     }
 
     public String getProductName() {
-        return waitUntilDisplayed(productNameElement, 5).getText();
+        System.out.println("Collect product name in basket");
+        String productNameInBasket = waitUntilAttributeLoaded
+                (driver.findElement(productNameElement),
+                        "innerText",
+                        4).getText();
+        System.out.println("Product name in basket is: " + productNameInBasket);
+        return productNameInBasket;
+        //return waitUntilDisplayed(productNameElement, 5).getText();
     }
 
     public int getProductCount() {

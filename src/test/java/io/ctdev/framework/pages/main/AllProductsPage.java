@@ -25,7 +25,7 @@ public class AllProductsPage extends AbstractPage {
     private By productNameInThePopUp = By.xpath("//mat-dialog-content//h1");
     private By productImgLinkInThePopUp = By.xpath("//mat-dialog-content//img");
     private By productPriceInThePopUp = By.xpath("//mat-dialog-content//p");
-    private By itemDescriptionTextElementInPop = By.xpath("//mat-dialog-container//h1/following::div[1]");
+    private By itemDescriptionTextElementInPopUp = By.xpath("//mat-dialog-container//h1/following::div[1]");
     private By goToTheNextPageButton = By.xpath("//button[contains(@aria-label, 'Next page')]");
     private By shoppingCartButtonElement = By.xpath("//mat-icon[contains(text(), 'shopping_cart')]");
     private By soldOutProductAddButton = By.xpath("(//mat-card//span[contains(text(), 'Sold Out')]/../..//span[contains(text(), 'Add to Basket')])[1]");
@@ -92,23 +92,45 @@ public class AllProductsPage extends AbstractPage {
 
     public String getProductName(int productPositionNumber) {
         System.out.println("Collect product Name from page");
-        printProductName(productPositionNumber);
-        return waitUntilDisplayed(By.xpath(String.format(productNameTextElement, productPositionNumber)), 3).getText();
+        String productName = waitUntilAttributeLoaded
+                (driver.findElement(By.xpath(String.format(productNameTextElement, productPositionNumber))),
+                        "textContent",
+                        4).getText();
+        System.out.println("Product Name form the page is: " + productName);
+        return productName;
 
     }
 
     public String getProductImgSrc(int productPositionNumber) {
         System.out.println("Collect product IMG src from page");
-        return waitUntilDisplayed(By.xpath(String.format(productImgSrcElement, productPositionNumber)), 3).getAttribute("src");
+        String productImgSrc = waitUntilAttributeLoaded
+                (driver.findElement(By.xpath(String.format(productImgSrcElement, productPositionNumber))),
+                        "src",
+                        4).getAttribute("src");
+        System.out.println("Product ImgSRC from the page is: " + productImgSrc);
+        return productImgSrc;
+
     }
 
     public String getProductPriceOnPage(int productPositionNumber) {
         System.out.println("Collect product price from page");
-        return waitUntilDisplayed(By.xpath(String.format(productPriceTextElement, productPositionNumber)), 3).getText();
+        String productPriceFromPage = waitUntilAttributeLoaded
+                (driver.findElement(By.xpath(String.format(productPriceTextElement, productPositionNumber))),
+                        "textContent",
+                        4).getAttribute("textContent");
+        System.out.println("Product Price from the page is: " + productPriceFromPage);
+        return productPriceFromPage;
     }
 
-    public String getItemDescriptionTextInPopUp() {
-        return waitUntilDisplayed(itemDescriptionTextElementInPop, 4).getText();
+    public String getProductDescriptionTextInPopUp() {
+        System.out.println("Collect product description in popUp");
+        String productDescriptionInPopUp = waitUntilAttributeLoaded
+                (driver.findElement(itemDescriptionTextElementInPopUp),
+                        "#text",
+                        4).getAttribute("#text");
+        System.out.println("Product description in the popUp is: " + productDescriptionInPopUp);
+        return productDescriptionInPopUp;
+        //return waitUntilDisplayed(itemDescriptionTextElementInPopUp, 4).getText();
     }
 
     public String getProductNameInThePopUp() {
@@ -149,10 +171,6 @@ public class AllProductsPage extends AbstractPage {
         waitForElementToBeClickable(By.xpath(String.format(productAddToCartButton, productPositionNumber)), 5);
     }
 
-    public void printProductName(int productPositionNumber) {
-        System.out.println("Collected product name is: " + waitUntilDisplayed(By.xpath(String.format(productNameTextElement, productPositionNumber)), 3).getText());
-    }
-
     public void printActualAndExpectedProductName(String productNameOnPage) {
         System.out.println("actual Product Name is: " + "'" + this.getProductNameInThePopUp() + "'");
         System.out.println("expected Product Name is: " + "'" + productNameOnPage + "'");
@@ -169,12 +187,12 @@ public class AllProductsPage extends AbstractPage {
     }
 
     public void printActualAndExpectedProductDescription(int productPositionNumber) {
-        System.out.println("actual Product description is: " + "'" + this.getItemDescriptionTextInPopUp() + "'");
+        System.out.println("actual Product description is: " + "'" + this.getProductDescriptionTextInPopUp() + "'");
         System.out.println("expected Product description is: " + "'" + productItemsDescription.getItemDescriptionByPositionNumber(productPositionNumber) + "'");
     }
 
     public void printActualAndExpectedProductDescription(String productName) {
-        System.out.println("actual Product description is: " + "'" + this.getItemDescriptionTextInPopUp() + "'");
+        System.out.println("actual Product description is: " + "'" + this.getProductDescriptionTextInPopUp() + "'");
         System.out.println("expected Product description is: " + "'" + productItemsDescription.getItemDescriptionByName(productName) + "'");
     }
 

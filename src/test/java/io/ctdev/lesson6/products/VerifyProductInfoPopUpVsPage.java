@@ -68,7 +68,7 @@ public class VerifyProductInfoPopUpVsPage extends BaseTest {
     public void verifyProductDescription() {
         allProductsPage.clickOnTheProduct(productPositionNumber);
         allProductsPage.printActualAndExpectedProductDescription(productNameOnPage);
-        Assert.assertTrue(allProductsPage.getItemDescriptionTextInPopUp().equals(productItemsDescription.getItemDescriptionByName(productNameOnPage)));
+        Assert.assertTrue(allProductsPage.getProductDescriptionTextInPopUp().equals(productItemsDescription.getItemDescriptionByName(productNameOnPage)));
 
     }
 

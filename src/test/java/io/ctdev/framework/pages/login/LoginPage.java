@@ -115,6 +115,7 @@ public class LoginPage extends AbstractPage {
     }
 
     public boolean isEmptyPasswordErrorDisplayed() {
+
         return wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//mat-error"), "Please provide"));
     }
 
