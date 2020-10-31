@@ -44,29 +44,25 @@ public class VerifyProductInfoPopUpVsPage extends BaseTest {
     @Test
     public void verifyProductNameOnPageVsProductNameInPopUp() {
         allProductsPage.clickOnTheProduct(productPositionNumber);
-        allProductsPage.printActualAndExpectedProductName(productNameOnPage);
         Assert.assertTrue(allProductsPage.getProductNameInThePopUp().equals(productNameOnPage), "Product Name on page is not the same as in the pop-up");
     }
 
     @Test
     public void verifyProductImgLinkOnPageVsProductImgLinkInPopUp() {
         allProductsPage.clickOnTheProduct(productPositionNumber);
-        allProductsPage.printActualAndExpectedProductImgSrc(productImgLinkOnPage);
         Assert.assertTrue(allProductsPage.getItemImgLinkInThePopUp().equals(productImgLinkOnPage), "Product Img Link on page is not the same as in the pop-up");
     }
 
     @Test
     public void verifyProductPriceOnThePageVsProductPriceInThePopUp() {
         allProductsPage.clickOnTheProduct(productPositionNumber);
-        allProductsPage.printActualAndExpectedProductPrice(productPriceOnPage);
         Assert.assertTrue(allProductsPage.getProductPriceInThePopUp().equals(productPriceOnPage), "Product Price on page is not the same as in the pop-up");
     }
 
     @Test
     public void verifyProductDescription() {
         allProductsPage.clickOnTheProduct(productPositionNumber);
-        allProductsPage.printActualAndExpectedProductDescription(productNameOnPage);
-        Assert.assertTrue(allProductsPage.getProductDescriptionTextInPopUp().equals(productItemsDescription.getItemDescriptionByName(productNameOnPage)), "Expected and Actual product description is not the same");
+        Assert.assertTrue(allProductsPage.getProductDescriptionTextInPopUp().equals(productItemsDescription.getItemDescriptionByPositionNumber(productPositionNumber)), "Expected and Actual product description is not the same");
 
     }
 
