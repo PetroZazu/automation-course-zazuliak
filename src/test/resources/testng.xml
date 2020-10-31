@@ -3,6 +3,7 @@
     <test name="Regression Testing">
         <classes>
             <class name="io.ctdev.lesson6.products.VerifySoldOutProduct"/>
+            <class name="io.ctdev.lesson6.products.VerifyOneProductInfoInBasket"/>
         </classes>
     </test>
 </suite>

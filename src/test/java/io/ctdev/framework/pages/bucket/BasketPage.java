@@ -39,15 +39,33 @@ public class BasketPage extends AbstractPage {
     }
 
     public int getProductCount() {
-        return Integer.parseInt(waitUntilDisplayed(countOfProductElement, 5).getText());
+        System.out.println("Collect product count in basket");
+        String productCountInBasket = waitUntilAttributeLoaded
+                (driver.findElement(countOfProductElement),
+                        "innerText",
+                        4).getText();
+        System.out.println("Product counts in basket is: " + productCountInBasket);
+        return Integer.parseInt(productCountInBasket);
     }
 
     public String getProductPrice() {
-        return waitUntilDisplayed(productPriceElement, 5).getText();
+        System.out.println("Collect product price in basket");
+        String productPriceInBasket = waitUntilAttributeLoaded
+                (driver.findElement(productPriceElement),
+                        "innerText",
+                        4).getText();
+        System.out.println("Product price in basket is: " + productPriceInBasket);
+        return productPriceInBasket;
     }
 
     public String getProductImgSrc() {
-        return waitUntilDisplayed(productImgSrcElement, 5).getAttribute("src");
+        System.out.println("Collect product img. src in basket");
+        String productImgSrcInBasket = waitUntilAttributeLoaded
+                (driver.findElement(productImgSrcElement),
+                        "currentSrc",
+                        4).getAttribute("src");
+        System.out.println("Product img Src in basket is: " + productImgSrcInBasket);
+        return productImgSrcInBasket;
     }
 
 
