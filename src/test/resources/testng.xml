@@ -11,7 +11,7 @@
 
             <class name="io.ctdev.lesson6.products.VerifySoldOutProduct"/>
             <class name="io.ctdev.lesson6.products.VerifyOneProductInfoInBasket"/>
-            
+            <class name="io.ctdev.lesson6.products.VerifyProductInfoPopUpVsPage"/>
         </classes>
     </test>
 </suite>

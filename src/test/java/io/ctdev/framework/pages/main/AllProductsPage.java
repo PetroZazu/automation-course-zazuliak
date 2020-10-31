@@ -30,7 +30,7 @@ public class AllProductsPage extends AbstractPage {
     private By shoppingCartButtonElement = By.xpath("//mat-icon[contains(text(), 'shopping_cart')]");
     private By soldOutProductAddButton = By.xpath("(//mat-card//span[contains(text(), 'Sold Out')]/../..//span[contains(text(), 'Add to Basket')])[1]");
     private By outOfStockErrorMessage = By.xpath("//span[contains(text(), 'We are out of stock')]");
-    private By youCanOrderUpToOneItemErrorMessage = By.xpath("//span[contains(text(), 'You can order only up to 1 items')]");
+    private By youCanOrderUpToOneItemErrorMessage = By.xpath("//span[contains(text(), 'You can order only up to')]");
     private By productPlacedConfirmPopUpElement = By.xpath("//span[contains(text(), 'Added') or contains(text(), 'Placed')]");
     private By pageBottomElement = By.xpath("//div[@class='mat-paginator-container']");
     private By xButtonInPopUpElement = By.xpath("//button/span[text()='X']");
@@ -65,7 +65,7 @@ public class AllProductsPage extends AbstractPage {
                 System.out.println(countOfAddedProduct + " item/s of current product was added to the cart instead of " + homManyItemsToAdd);
                 break;
             }
-            //waitUntilDisplayed(productPlacedConfirmPopUpElement, 2);
+
             wait.until(ExpectedConditions.invisibilityOfElementLocated(productPlacedConfirmPopUpElement));
             countOfAddedProduct = i;
         }
@@ -78,12 +78,12 @@ public class AllProductsPage extends AbstractPage {
 
     public void goToTheNextPage() {
         System.out.println("Click 'Next page' button");
-        waitForElementToBeClickable(goToTheNextPageButton, 5).click();
+        waitForElementToBeClickable(goToTheNextPageButton, 12).click();
     }
 
     public void clickAddSoldOutProduct() {
         System.out.println("Try to add sold out product to the cart");
-        waitUntilDisplayed(soldOutProductAddButton, 7).click();
+        waitUntilDisplayed(soldOutProductAddButton, 12).click();
     }
 
     public int getHowManyProductsAdded() {
@@ -95,7 +95,7 @@ public class AllProductsPage extends AbstractPage {
         String productName = waitUntilAttributeLoaded
                 (driver.findElement(By.xpath(String.format(productNameTextElement, productPositionNumber))),
                         "textContent",
-                        6).getText();
+                        12).getText();
         System.out.println("Product Name form the page is: " + productName);
         return productName;
 
@@ -126,23 +126,40 @@ public class AllProductsPage extends AbstractPage {
         System.out.println("Collect product description in popUp");
         String productDescriptionInPopUp = waitUntilAttributeLoaded
                 (driver.findElement(itemDescriptionTextElementInPopUp),
-                        "#text",
-                        6).getAttribute("#text");
+                        "innerText",
+                        12).getText();
         System.out.println("Product description in the popUp is: " + productDescriptionInPopUp);
         return productDescriptionInPopUp;
-        //return waitUntilDisplayed(itemDescriptionTextElementInPopUp, 4).getText();
     }
 
     public String getProductNameInThePopUp() {
-        return waitUntilDisplayed(productNameInThePopUp, 4).getText();
+        System.out.println("Collect product Name in popUp");
+        String productNameInPopUp = waitUntilAttributeLoaded
+                (driver.findElement(productNameInThePopUp),
+                        "innerText",
+                        12).getText();
+        System.out.println("Product name in the popUp is: " + productNameInPopUp);
+        return productNameInPopUp;
     }
 
     public String getItemImgLinkInThePopUp() {
-        return waitUntilDisplayed(productImgLinkInThePopUp, 4).getAttribute("src");
+        System.out.println("Collect product img SRC in popUp");
+        String productImgSrcInPopUp = waitUntilAttributeLoaded
+                (driver.findElement(productImgLinkInThePopUp),
+                        "src",
+                        12).getAttribute("src");
+        System.out.println("Product Img Src in the popUp is: " + productImgSrcInPopUp);
+        return productImgSrcInPopUp;
     }
 
     public String getProductPriceInThePopUp() {
-        return waitUntilDisplayed(productPriceInThePopUp, 4).getText();
+        System.out.println("Collect product Price in popUp");
+        String productPriceInPopUp = waitUntilAttributeLoaded
+                (driver.findElement(productPriceInThePopUp),
+                        "innerText",
+                        12).getText();
+        System.out.println("Product Price in the popUp is: " + productPriceInPopUp);
+        return productPriceInPopUp;
     }
 
     public Boolean isOutOfStockErrorDisplayed() {

@@ -32,7 +32,7 @@ public class BasketPage extends AbstractPage {
         String productNameInBasket = waitUntilAttributeLoaded
                 (driver.findElement(productNameElement),
                         "innerText",
-                        4).getText();
+                        12).getText();
         System.out.println("Product name in basket is: " + productNameInBasket);
         return productNameInBasket;
         //return waitUntilDisplayed(productNameElement, 5).getText();
@@ -43,7 +43,7 @@ public class BasketPage extends AbstractPage {
         String productCountInBasket = waitUntilAttributeLoaded
                 (driver.findElement(countOfProductElement),
                         "innerText",
-                        4).getText();
+                        12).getText();
         System.out.println("Product counts in basket is: " + productCountInBasket);
         return Integer.parseInt(productCountInBasket);
     }
@@ -53,7 +53,7 @@ public class BasketPage extends AbstractPage {
         String productPriceInBasket = waitUntilAttributeLoaded
                 (driver.findElement(productPriceElement),
                         "innerText",
-                        4).getText();
+                        12).getText();
         System.out.println("Product price in basket is: " + productPriceInBasket);
         return productPriceInBasket;
     }
@@ -63,7 +63,7 @@ public class BasketPage extends AbstractPage {
         String productImgSrcInBasket = waitUntilAttributeLoaded
                 (driver.findElement(productImgSrcElement),
                         "currentSrc",
-                        4).getAttribute("src");
+                        12).getAttribute("src");
         System.out.println("Product img Src in basket is: " + productImgSrcInBasket);
         return productImgSrcInBasket;
     }
