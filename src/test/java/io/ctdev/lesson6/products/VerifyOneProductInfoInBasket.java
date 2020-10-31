@@ -27,7 +27,7 @@ public class VerifyOneProductInfoInBasket extends BaseTest {
         basketPage = new BasketPage(driver);
         loginPage = new LoginPage(driver);
         allProductsPage = new AllProductsPage(driver);
-        productPositionNumber = allProductsPage.selectRandomProductNumber(12);
+        productPositionNumber = 11;//allProductsPage.selectRandomProductNumber(12);
         loginPage.openPage();
         loginPage.closeWelcomeAndCookiesPopUps();
         loginPage.performLoginToTheAccount();
@@ -38,6 +38,7 @@ public class VerifyOneProductInfoInBasket extends BaseTest {
 
     @Test
     public void testOneProductInfoWhenInCart() {
+        allProductsPage.scrollToTheSelectedProduct(productPositionNumber);
         //productDescription = getItemDescriptionByPositionNumber(productPositionNumber);
         productName = allProductsPage.getProductName(productPositionNumber);
         productImgLink = allProductsPage.getProductImgSrc(productPositionNumber);

@@ -95,7 +95,7 @@ public class AllProductsPage extends AbstractPage {
         String productName = waitUntilAttributeLoaded
                 (driver.findElement(By.xpath(String.format(productNameTextElement, productPositionNumber))),
                         "textContent",
-                        4).getText();
+                        6).getText();
         System.out.println("Product Name form the page is: " + productName);
         return productName;
 
@@ -106,7 +106,7 @@ public class AllProductsPage extends AbstractPage {
         String productImgSrc = waitUntilAttributeLoaded
                 (driver.findElement(By.xpath(String.format(productImgSrcElement, productPositionNumber))),
                         "src",
-                        4).getAttribute("src");
+                        6).getAttribute("src");
         System.out.println("Product ImgSRC from the page is: " + productImgSrc);
         return productImgSrc;
 
@@ -117,7 +117,7 @@ public class AllProductsPage extends AbstractPage {
         String productPriceFromPage = waitUntilAttributeLoaded
                 (driver.findElement(By.xpath(String.format(productPriceTextElement, productPositionNumber))),
                         "textContent",
-                        4).getAttribute("textContent");
+                        6).getAttribute("textContent");
         System.out.println("Product Price from the page is: " + productPriceFromPage);
         return productPriceFromPage;
     }
@@ -127,7 +127,7 @@ public class AllProductsPage extends AbstractPage {
         String productDescriptionInPopUp = waitUntilAttributeLoaded
                 (driver.findElement(itemDescriptionTextElementInPopUp),
                         "#text",
-                        4).getAttribute("#text");
+                        6).getAttribute("#text");
         System.out.println("Product description in the popUp is: " + productDescriptionInPopUp);
         return productDescriptionInPopUp;
         //return waitUntilDisplayed(itemDescriptionTextElementInPopUp, 4).getText();
