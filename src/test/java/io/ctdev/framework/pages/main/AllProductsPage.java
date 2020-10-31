@@ -6,6 +6,7 @@ import io.ctdev.framework.pages.AbstractPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -91,31 +92,36 @@ public class AllProductsPage extends AbstractPage {
     }
 
     public String getProductName(int productPositionNumber) {
+        productNameTextElement = (String.format(productNameTextElement, productPositionNumber));
         System.out.println("Collect product Name from page");
+        waitUntilDisplayed(By.xpath(productNameTextElement), 5);
         String productName = waitUntilAttributeLoaded
-                (driver.findElement(By.xpath(String.format(productNameTextElement, productPositionNumber))),
+                (driver.findElement(By.xpath(productNameTextElement)),
                         "innerText",
-                        12).getAttribute("innerText");
+                        8).getAttribute("innerText");
         System.out.println("Product Name form the page is: " + productName);
         return productName;
 
     }
 
     public String getProductImgSrc(int productPositionNumber) {
+        productImgSrcElement = String.format(productImgSrcElement, productPositionNumber);
+        waitUntilDisplayed(By.xpath(productImgSrcElement), 5);
         System.out.println("Collect product IMG src from page");
         String productImgSrc = waitUntilAttributeLoaded
-                (driver.findElement(By.xpath(String.format(productImgSrcElement, productPositionNumber))),
+                (driver.findElement(By.xpath(productImgSrcElement)),
                         "src",
                         6).getAttribute("src");
         System.out.println("Product ImgSRC from the page is: " + productImgSrc);
         return productImgSrc;
-
     }
 
     public String getProductPriceOnPage(int productPositionNumber) {
+        productPriceTextElement = String.format(productPriceTextElement, productPositionNumber);
+        waitUntilDisplayed(By.xpath(productPriceTextElement), 5);
         System.out.println("Collect product price from page");
         String productPriceFromPage = waitUntilAttributeLoaded
-                (driver.findElement(By.xpath(String.format(productPriceTextElement, productPositionNumber))),
+                (driver.findElement(By.xpath(productPriceTextElement)),
                         "textContent",
                         6).getAttribute("textContent");
         System.out.println("Product Price from the page is: " + productPriceFromPage);
@@ -124,6 +130,7 @@ public class AllProductsPage extends AbstractPage {
 
     public String getProductDescriptionTextInPopUp() {
         System.out.println("Collect product description in popUp");
+        waitUntilDisplayed(itemDescriptionTextElementInPopUp, 5);
         String productDescriptionInPopUp = waitUntilAttributeLoaded
                 (driver.findElement(itemDescriptionTextElementInPopUp),
                         "textContent",
@@ -134,6 +141,7 @@ public class AllProductsPage extends AbstractPage {
 
     public String getProductNameInThePopUp() {
         System.out.println("Collect product Name in popUp");
+        waitUntilDisplayed(productNameInThePopUp, 5);
         String productNameInPopUp = waitUntilAttributeLoaded
                 (driver.findElement(productNameInThePopUp),
                         "innerText",
@@ -144,6 +152,7 @@ public class AllProductsPage extends AbstractPage {
 
     public String getItemImgLinkInThePopUp() {
         System.out.println("Collect product img SRC in popUp");
+        waitUntilDisplayed(productImgLinkInThePopUp, 5);
         String productImgSrcInPopUp = waitUntilAttributeLoaded
                 (driver.findElement(productImgLinkInThePopUp),
                         "src",
@@ -154,6 +163,7 @@ public class AllProductsPage extends AbstractPage {
 
     public String getProductPriceInThePopUp() {
         System.out.println("Collect product Price in popUp");
+        waitUntilDisplayed(productPriceInThePopUp, 5);
         String productPriceInPopUp = waitUntilAttributeLoaded
                 (driver.findElement(productPriceInThePopUp),
                         "innerText",

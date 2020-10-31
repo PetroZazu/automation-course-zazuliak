@@ -28,6 +28,7 @@ public class VerifyProductInfoPopUpVsPage extends BaseTest {
 
         allProductsPage.openPage();
         allProductsPage.closeWelcomeAndCookiesPopUps();
+        waitForPageToLoad(driver);
 
         productNameOnPage = allProductsPage.getProductName(productPositionNumber);
         productImgLinkOnPage = allProductsPage.getProductImgSrc(productPositionNumber);
