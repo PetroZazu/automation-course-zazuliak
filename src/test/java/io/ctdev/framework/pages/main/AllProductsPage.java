@@ -94,8 +94,8 @@ public class AllProductsPage extends AbstractPage {
         System.out.println("Collect product Name from page");
         String productName = waitUntilAttributeLoaded
                 (driver.findElement(By.xpath(String.format(productNameTextElement, productPositionNumber))),
-                        "textContent",
-                        12).getText();
+                        "innerText",
+                        12).getAttribute("innerText");
         System.out.println("Product Name form the page is: " + productName);
         return productName;
 
@@ -126,8 +126,8 @@ public class AllProductsPage extends AbstractPage {
         System.out.println("Collect product description in popUp");
         String productDescriptionInPopUp = waitUntilAttributeLoaded
                 (driver.findElement(itemDescriptionTextElementInPopUp),
-                        "innerText",
-                        12).getText();
+                        "textContent",
+                        12).getAttribute("textContent");
         System.out.println("Product description in the popUp is: " + productDescriptionInPopUp);
         return productDescriptionInPopUp;
     }
@@ -137,7 +137,7 @@ public class AllProductsPage extends AbstractPage {
         String productNameInPopUp = waitUntilAttributeLoaded
                 (driver.findElement(productNameInThePopUp),
                         "innerText",
-                        12).getText();
+                        12).getAttribute("innerText");
         System.out.println("Product name in the popUp is: " + productNameInPopUp);
         return productNameInPopUp;
     }
@@ -157,7 +157,7 @@ public class AllProductsPage extends AbstractPage {
         String productPriceInPopUp = waitUntilAttributeLoaded
                 (driver.findElement(productPriceInThePopUp),
                         "innerText",
-                        12).getText();
+                        12).getAttribute("innerText");
         System.out.println("Product Price in the popUp is: " + productPriceInPopUp);
         return productPriceInPopUp;
     }
