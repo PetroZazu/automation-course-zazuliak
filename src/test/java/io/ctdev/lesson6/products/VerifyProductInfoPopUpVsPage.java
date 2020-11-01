@@ -23,7 +23,7 @@ public class VerifyProductInfoPopUpVsPage extends BaseTest {
     private String productImgLinkOnPage;
     private String productPriceOnPage;
 
-    @Epic("Basket")
+    @Epic("Products")
     @Story("Products content")
 
     @BeforeClass
