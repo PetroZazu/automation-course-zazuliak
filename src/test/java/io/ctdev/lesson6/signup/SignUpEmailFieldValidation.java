@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 import static io.ctdev.framework.pages.AbstractPage.waitForPageToLoad;
 
 @Epic("SignUp/SignIn")
-@Story("Email alidation rules")
+@Story("Email validation rules")
 
 public class SignUpEmailFieldValidation extends BaseTest {
     private SignUpPage signUpPage;
