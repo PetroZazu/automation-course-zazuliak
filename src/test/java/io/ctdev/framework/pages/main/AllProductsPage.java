@@ -3,6 +3,7 @@ package io.ctdev.framework.pages.main;
 import io.ctdev.framework.config.TestConfig;
 import io.ctdev.framework.model.ProductItemsDescription;
 import io.ctdev.framework.pages.AbstractPage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -45,6 +46,7 @@ public class AllProductsPage extends AbstractPage {
         this.driver = driver;
     }
 
+    @Step("Go to the Juice Shop home Web Page")
     @Override
     public void openPage() {
         System.out.println("Open Main Web Page");
@@ -56,6 +58,7 @@ public class AllProductsPage extends AbstractPage {
         waitUntilDisplayed(By.xpath(String.format(productElementOnPage, productPositionNumber)), 3).click();
     }
 
+    @Step("Add product to the cart one or more times")
     public void clickAddProductToTheCart(int productPosition, int homManyItemsToAdd) {
         System.out.println("this product will be added to the cart " + homManyItemsToAdd + " times");
         for (int i = 1; i <= homManyItemsToAdd; i++) {
@@ -73,6 +76,7 @@ public class AllProductsPage extends AbstractPage {
         System.out.println("To the cart was added " + countOfAddedProduct + " item/s of selected product");
     }
 
+    @Step ("Go to the shopping car")
     public void goToTheShoppingCart() {
         waitUntilDisplayed(shoppingCartButtonElement, 2).click();
     }
@@ -91,6 +95,7 @@ public class AllProductsPage extends AbstractPage {
         return countOfAddedProduct;
     }
 
+    @Step("Collect product name")
     public String getProductName(int productPositionNumber) {
         productNameTextElement = (String.format(productNameTextElement, productPositionNumber));
         System.out.println("Collect product Name from page");
@@ -104,6 +109,7 @@ public class AllProductsPage extends AbstractPage {
 
     }
 
+    @Step("Collect product Img. SRC")
     public String getProductImgSrc(int productPositionNumber) {
         productImgSrcElement = String.format(productImgSrcElement, productPositionNumber);
         waitUntilDisplayed(By.xpath(productImgSrcElement), 5);
@@ -116,6 +122,7 @@ public class AllProductsPage extends AbstractPage {
         return productImgSrc;
     }
 
+    @Step("Collect product price")
     public String getProductPriceOnPage(int productPositionNumber) {
         productPriceTextElement = String.format(productPriceTextElement, productPositionNumber);
         waitUntilDisplayed(By.xpath(productPriceTextElement), 5);

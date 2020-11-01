@@ -2,7 +2,7 @@
 <suite name="Regression Suite" verbose="1" configfailurepolicy="continue" parallel="none" thread-count="1">
     <test name="Regression Testing">
         <classes>
-            <class name="io.ctdev.lesson6.products.VerifyProductInfoPopUpVsPage"/>
+            <class name="io.ctdev.lesson6.products.VerifyOneProductInfoInBasket"/>
         </classes>
     </test>
 </suite>

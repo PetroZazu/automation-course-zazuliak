@@ -41,7 +41,7 @@ public class LoginPage extends AbstractPage {
         driver.get(TestConfig.cfg.juiceShopLoginPage());
     }
 
-    @Step("Fill Email, Password fields and click login button")
+    @Step("Fill Email and Password fields and click login button")
     public void performLoginToTheAccount() {
         fillEmailTextBox("pzzzzazuliak@yopmail.com");
         fillPasswordTextBox("@z$rt&12!!azazaza");

@@ -5,6 +5,7 @@ import io.ctdev.framework.pages.login.LoginPage;
 import io.ctdev.framework.pages.main.AllProductsPage;
 import io.ctdev.lesson6.BaseTest;
 
+import io.qameta.allure.Step;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -31,18 +32,14 @@ public class VerifyOneProductInfoInBasket extends BaseTest {
         loginPage.closeWelcomeAndCookiesPopUps();
         loginPage.performLoginToTheAccount();
         allProductsPage.openPage();
-
-        //waitForPageToLoad(driver);
     }
 
     @Test
     public void testOneProductInfoWhenInCart() {
-        //allProductsPage.scrollToTheSelectedProduct(productPositionNumber);
-        //productDescription = getItemDescriptionByPositionNumber(productPositionNumber);
         productName = allProductsPage.getProductName(productPositionNumber);
         productImgLink = allProductsPage.getProductImgSrc(productPositionNumber);
         productPrice = allProductsPage.getProductPriceOnPage(productPositionNumber);
-        //allProductsPage.scrollToTheSelectedProduct(productPositionNumber);
+
         allProductsPage.clickAddProductToTheCart(productPositionNumber, 1);
         allProductsPage.goToTheShoppingCart();
         softAssert.assertEquals(basketPage.getProductName(), productName, "Name of the product on page and name of the product in basket, doesn't equals");

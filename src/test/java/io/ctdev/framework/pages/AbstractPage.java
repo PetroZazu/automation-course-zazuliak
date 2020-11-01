@@ -1,5 +1,6 @@
 package io.ctdev.framework.pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -20,6 +21,7 @@ public abstract class AbstractPage {
 
     protected abstract void openPage();
 
+    @Step("Close the 'Welcome' and 'Cookies consent' pop ups")
     public void closeWelcomeAndCookiesPopUps() {
         System.out.println("Using cookies adjustment, banner and cookies consent pop-ups will be closed");
         driver.manage().addCookie(new Cookie("cookieconsent_status", "dismiss"));
