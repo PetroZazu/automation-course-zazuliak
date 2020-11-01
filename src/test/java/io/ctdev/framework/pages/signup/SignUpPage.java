@@ -106,7 +106,7 @@ public class SignUpPage extends AbstractPage {
 
     public Boolean isErrorAboutInvalidEmailDisplayed() {
         System.out.println("Is 'Email address is not valid.' error is displayed?");
-        return waitUntilDisplayed(invalidEmailErrorMessage, 4).isDisplayed();
+        return waitUntilDisplayed(invalidEmailErrorMessage, 5).isDisplayed();
     }
 
     public Boolean isErrorAboutAlreadyExistsEmailDisplayed() {
@@ -158,7 +158,7 @@ public class SignUpPage extends AbstractPage {
     }
 
     public void hoverInToTheEmailTextBox() {
-        waitUntilDisplayed(emailTextBoxElement, 3).click();
+        waitUntilDisplayed(emailTextBoxElement, 5).click();
     }
 }
 

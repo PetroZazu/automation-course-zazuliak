@@ -28,7 +28,7 @@ public class SignUpEmailFieldValidation extends BaseTest {
     @AfterMethod
     public void afterEachMethod() {
         signUpPage.clearAllFields();
-        driver.get(TestConfig.cfg.juiceShopSignUpPage());
+        driver.navigate().refresh();
         waitForPageToLoad(driver);
     }
 
