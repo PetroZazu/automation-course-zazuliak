@@ -30,7 +30,7 @@ public class AllProductsPage extends AbstractPage {
     private By itemDescriptionTextElementInPopUp = By.xpath("//mat-dialog-container//h1/following::div[1]");
     private By goToTheNextPageButton = By.xpath("//button[contains(@aria-label, 'Next page')]");
     private By shoppingCartButtonElement = By.xpath("//mat-icon[contains(text(), 'shopping_cart')]");
-    private By soldOutProductAddButton = By.xpath("(//mat-card//span[contains(text(), 'Sold Out')]/../..//span[contains(text(), 'Add to Basket')])[1]");
+    private By soldOutProductAddButton = By.xpath("(//mat-card//span[contains(text(), 'Sold Out')]/../..//button)[1]");
     private By outOfStockErrorMessage = By.xpath("//span[contains(text(), 'We are out of stock')]");
     private By youCanOrderUpToOneItemErrorMessage = By.xpath("//span[contains(text(), 'You can order only up to')]");
     private By productPlacedConfirmPopUpElement = By.xpath("//span[contains(text(), 'Added') or contains(text(), 'Placed')]");
