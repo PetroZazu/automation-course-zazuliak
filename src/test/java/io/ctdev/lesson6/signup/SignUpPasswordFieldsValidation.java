@@ -4,12 +4,18 @@ import io.ctdev.framework.config.TestConfig;
 import io.ctdev.framework.pages.signup.SignUpPage;
 import io.ctdev.lesson6.BaseTest;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static io.ctdev.framework.pages.AbstractPage.waitForPageToLoad;
+
+@Epic("SignUp/SignIn")
+@Story("Password validation rules")
 
 public class SignUpPasswordFieldsValidation extends BaseTest {
     private SignUpPage signUpPage;
@@ -35,7 +41,10 @@ public class SignUpPasswordFieldsValidation extends BaseTest {
     }
 
     @Test
+    @Description("Check that password fields are required")
     public void verifyPasswordFieldsIsRequired() {
+        System.out.println();
+        System.out.println("verifyPasswordFieldsIsRequired test");
         signUpPage.fillEmailField(validEmailType);
         signUpPage.hoverInToThePasswordTextBox();
         signUpPage.hoverInToTheRepeatPasswordTextBox();
@@ -48,7 +57,10 @@ public class SignUpPasswordFieldsValidation extends BaseTest {
     }
 
     @Test
+    @Description("Verify too short password error")
     public void verifyTooShortPassword() {
+        System.out.println();
+        System.out.println("verifyTooShortPassword test");
         signUpPage.fillEmailField(validEmailType);
         signUpPage.fillPasswordField(password4symbols);
         signUpPage.fillRepeatPasswordField(password4symbols);
@@ -60,7 +72,10 @@ public class SignUpPasswordFieldsValidation extends BaseTest {
     }
 
     @Test
+    @Description("Verify too long password error")
     public void verifyTooLongPassword() {
+        System.out.println();
+        System.out.println("verifyTooLongPassword test");
         signUpPage.fillEmailField(validEmailType);
         signUpPage.fillPasswordField(password21symbols);
         signUpPage.fillRepeatPasswordField(password21symbols);
@@ -72,7 +87,10 @@ public class SignUpPasswordFieldsValidation extends BaseTest {
     }
 
     @Test
+    @Description("Verify ability to provide max allowed length password")
     public void verifyMaxAllowedPasswordLength() {
+        System.out.println();
+        System.out.println("verifyMaxAllowedPasswordLength test");
         signUpPage.fillEmailField(validEmailType);
         signUpPage.fillPasswordField(password20symbols);
         signUpPage.fillRepeatPasswordField(password20symbols);
@@ -83,7 +101,10 @@ public class SignUpPasswordFieldsValidation extends BaseTest {
     }
 
     @Test
+    @Description("Verify ability to provide min allowed length password")
     public void verifyMinAllowedPasswordLength() {
+        System.out.println();
+        System.out.println("verifyMinAllowedPasswordLength test");
         signUpPage.fillEmailField(validEmailType);
         signUpPage.fillPasswordField(password5symbols);
         signUpPage.fillRepeatPasswordField(password5symbols);
@@ -94,7 +115,10 @@ public class SignUpPasswordFieldsValidation extends BaseTest {
     }
 
     @Test
+    @Description("Verify inability to create account when passwords do not match")
     public void verifyErrorWhenPasswordsDoNotMatch() {
+        System.out.println();
+        System.out.println("verifyErrorWhenPasswordsDoNotMatch test");
         signUpPage.fillEmailField(validEmailType);
         signUpPage.fillPasswordField(password5symbols);
         signUpPage.fillRepeatPasswordField(password20symbols);

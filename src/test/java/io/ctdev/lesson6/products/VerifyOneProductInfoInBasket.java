@@ -5,12 +5,16 @@ import io.ctdev.framework.pages.login.LoginPage;
 import io.ctdev.framework.pages.main.AllProductsPage;
 import io.ctdev.lesson6.BaseTest;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
 import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import static io.ctdev.framework.model.ProductItemsDescription.getItemDescriptionByPositionNumber;
+@Epic("Products")
+@Story("Products basket")
 
 public class VerifyOneProductInfoInBasket extends BaseTest {
     private SoftAssert softAssert = new SoftAssert();
@@ -27,7 +31,7 @@ public class VerifyOneProductInfoInBasket extends BaseTest {
         basketPage = new BasketPage(driver);
         loginPage = new LoginPage(driver);
         allProductsPage = new AllProductsPage(driver);
-        productPositionNumber = 11;//allProductsPage.selectRandomProductNumber(12);
+        productPositionNumber = allProductsPage.selectRandomProductNumber(12);
         loginPage.openPage();
         loginPage.closeWelcomeAndCookiesPopUps();
         loginPage.performLoginToTheAccount();
@@ -35,7 +39,10 @@ public class VerifyOneProductInfoInBasket extends BaseTest {
     }
 
     @Test
+    @Description("Check that product Name, Img, Price, and count of added product is the same as was on the main page")
     public void testOneProductInfoWhenInCart() {
+        System.out.println();
+        System.out.println("testOneProductInfoWhenInCart Test");
         productName = allProductsPage.getProductName(productPositionNumber);
         productImgLink = allProductsPage.getProductImgSrc(productPositionNumber);
         productPrice = allProductsPage.getProductPriceOnPage(productPositionNumber);

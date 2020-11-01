@@ -1,17 +1,21 @@
 package io.ctdev.lesson6.login;
 
-import io.ctdev.framework.config.TestConfig;
 import io.ctdev.framework.model.JuiceShopUser;
 import io.ctdev.framework.model.JuiceShopUserBuilder;
 import io.ctdev.framework.pages.login.LoginPage;
 import io.ctdev.lesson6.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-
 import static io.ctdev.framework.pages.AbstractPage.waitForPageToLoad;
+
+@Epic("SignUp/SignIn")
+@Story("User Login")
 
 public class NegativeLoginTest extends BaseTest {
 
@@ -37,6 +41,7 @@ public class NegativeLoginTest extends BaseTest {
     }
 
     @Test
+    @Description("Verify inability to logIn with Invalid Password and Valid Email")
     public void loginWhenInvalidPasswordValidEmail() {
         System.out.println();
         System.out.println("loginWhenInvalidPasswordValidEmail test");
@@ -54,6 +59,7 @@ public class NegativeLoginTest extends BaseTest {
     }
 
     @Test
+    @Description("Verify Inability to log in when Invalid Email but Valid password")
     public void loginWhenInvalidEmailValidPassword() {
         System.out.println();
         System.out.println("loginWhenInvalidEmailValidPassword test");
@@ -71,6 +77,7 @@ public class NegativeLoginTest extends BaseTest {
     }
 
     @Test
+    @Description("Verify inability to log in with empty password field")
     public void loginWhenEmptyPassword() {
         System.out.println();
         System.out.println("loginWhenEmptyPassword test");

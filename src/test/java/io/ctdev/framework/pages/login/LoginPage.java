@@ -74,7 +74,7 @@ public class LoginPage extends AbstractPage {
         waitUntilDisplayed(passwordTextBox, 5).sendKeys(password);
     }
 
-
+    @Step("Get the current logged in User Email")
     public String getCurrentLoggedInUserEmail() {
         WebElement userNameElement = wait.until(ExpectedConditions.presenceOfElementLocated(currentLoggedInUserEmailElement));
         String actualUserName = userNameElement.getAttribute("innerText").trim();
@@ -96,29 +96,33 @@ public class LoginPage extends AbstractPage {
         driver.findElement(loginPageTitleTextElement).click();
     }
 
-    @Step
+    @Step("Clear 'Email' and 'Password' fields")
     public void clearEmailAndPasswordFields() {
         driver.findElement(passwordTextBox).clear();
         driver.findElement(emailTextBoxElement).clear();
     }
 
+    @Step("Click in to the 'Email' field")
     public void clickInTheEmailField() {
         driver.findElement(emailTextBoxElement).click();
     }
 
+    @Step("Click in to the 'Password' field")
     public void clickInThePasswordField() {
         driver.findElement(passwordTextBox).click();
     }
 
+    @Step("Is invalid login or password error displayed?")
     public boolean isInvalidLoginOrPasswordErrorMessageDisplayed() {
         return waitUntilDisplayed(invalidLoginOrPasswordErrorElement, 4).isDisplayed();
     }
 
+    @Step("Is Empty password error displayed?")
     public boolean isEmptyPasswordErrorDisplayed() {
-
         return wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//mat-error"), "Please provide"));
     }
 
+    @Step("Is 'Submit' button in inactive state?")
     public boolean isSubmitButtonInactive() {
         return waitUntilDisplayed(inactiveLoginButtonElement, 4).isDisplayed();
     }

@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Test;
 
 import java.util.Random;
 
@@ -54,6 +55,7 @@ public class AllProductsPage extends AbstractPage {
         this.wait = new WebDriverWait(driver, TIME_OUT);
     }
 
+    @Step("Click on the selected product to open product pop up")
     public void clickOnTheProduct(int productPositionNumber) {
         waitUntilDisplayed(By.xpath(String.format(productElementOnPage, productPositionNumber)), 3).click();
     }
@@ -76,16 +78,18 @@ public class AllProductsPage extends AbstractPage {
         System.out.println("To the cart was added " + countOfAddedProduct + " item/s of selected product");
     }
 
-    @Step ("Go to the shopping car")
+    @Step("Go to the shopping car")
     public void goToTheShoppingCart() {
         waitUntilDisplayed(shoppingCartButtonElement, 2).click();
     }
 
+    @Step("Click on the 'Next Page' button to perform loading of the next page")
     public void goToTheNextPage() {
         System.out.println("Click 'Next page' button");
         waitForElementToBeClickable(goToTheNextPageButton, 12).click();
     }
 
+    @Step("Add sold out product to the cart")
     public void clickAddSoldOutProduct() {
         System.out.println("Try to add sold out product to the cart");
         waitUntilDisplayed(soldOutProductAddButton, 12).click();
@@ -106,7 +110,6 @@ public class AllProductsPage extends AbstractPage {
                         8).getAttribute("innerText");
         System.out.println("Product Name form the page is: " + productName);
         return productName;
-
     }
 
     @Step("Collect product Img. SRC")
@@ -135,6 +138,7 @@ public class AllProductsPage extends AbstractPage {
         return productPriceFromPage;
     }
 
+    @Step("Collect product description from the pop up")
     public String getProductDescriptionTextInPopUp() {
         System.out.println("Collect product description in popUp");
         waitUntilDisplayed(itemDescriptionTextElementInPopUp, 5);
@@ -146,6 +150,7 @@ public class AllProductsPage extends AbstractPage {
         return productDescriptionInPopUp;
     }
 
+    @Step("Collect product name from the pop up")
     public String getProductNameInThePopUp() {
         System.out.println("Collect product Name in popUp");
         waitUntilDisplayed(productNameInThePopUp, 5);
@@ -157,6 +162,7 @@ public class AllProductsPage extends AbstractPage {
         return productNameInPopUp;
     }
 
+    @Step("Collect product img. SRC from the pop up")
     public String getItemImgLinkInThePopUp() {
         System.out.println("Collect product img SRC in popUp");
         waitUntilDisplayed(productImgLinkInThePopUp, 5);
@@ -168,6 +174,7 @@ public class AllProductsPage extends AbstractPage {
         return productImgSrcInPopUp;
     }
 
+    @Step("Collect product price from the pop up")
     public String getProductPriceInThePopUp() {
         System.out.println("Collect product Price in popUp");
         waitUntilDisplayed(productPriceInThePopUp, 5);
@@ -179,6 +186,7 @@ public class AllProductsPage extends AbstractPage {
         return productPriceInPopUp;
     }
 
+    @Step("Is error about 'inability to add sold out product to the cart' displayed? ")
     public Boolean isOutOfStockErrorDisplayed() {
         try {
             return wait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//simple-snack-bar/span"), "We are out of stock"));
@@ -196,41 +204,12 @@ public class AllProductsPage extends AbstractPage {
 
     }
 
+    @Step("Scroll to the bottom of the page")
     public void scrollToTheBottomOfThePage() {
         scrollToTheElement(pageBottomElement);
     }
 
-    public void scrollToTheSelectedProduct(int productPositionNumber) {
-        scrollToTheElement(By.xpath(String.format(productAddToCartButton, productPositionNumber)));
-        waitForElementToBeClickable(By.xpath(String.format(productAddToCartButton, productPositionNumber)), 5);
-    }
-
-    public void printActualAndExpectedProductName(String productNameOnPage) {
-        System.out.println("actual Product Name is: " + "'" + this.getProductNameInThePopUp() + "'");
-        System.out.println("expected Product Name is: " + "'" + productNameOnPage + "'");
-    }
-
-    public void printActualAndExpectedProductImgSrc(String productImgLinkOnPage) {
-        System.out.println("actual Product Image Src is: " + "'" + this.getItemImgLinkInThePopUp() + "'");
-        System.out.println("expected Product Image Src is: " + "'" + productImgLinkOnPage + "'");
-    }
-
-    public void printActualAndExpectedProductPrice(String productPriceOnPage) {
-        System.out.println("actual Product Price is: " + "'" + this.getProductPriceInThePopUp() + "'");
-        System.out.println("expected Product Price is: " + "'" + productPriceOnPage + "'");
-    }
-
-    public void printActualAndExpectedProductDescription(int productPositionNumber) {
-        System.out.println("actual Product description is: " + "'" + this.getProductDescriptionTextInPopUp() + "'");
-        System.out.println("expected Product description is: " + "'" + productItemsDescription.getItemDescriptionByPositionNumber(productPositionNumber) + "'");
-    }
-
-    public void printActualAndExpectedProductDescription(String productName) {
-        System.out.println("actual Product description is: " + "'" + this.getProductDescriptionTextInPopUp() + "'");
-        System.out.println("expected Product description is: " + "'" + productItemsDescription.getItemDescriptionByName(productName) + "'");
-    }
-
-
+    @Step("Selecting random product number from 1 to 12")
     public int selectRandomProductNumber(int numberOfProductsOnPage) {
         numberOfProductsOnPage++;
         int productPositionNumber = new Random().nextInt(numberOfProductsOnPage);

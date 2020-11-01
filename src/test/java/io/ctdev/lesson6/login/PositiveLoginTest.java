@@ -31,16 +31,10 @@ public class PositiveLoginTest extends BaseTest {
     public void verifyAbilityToLogInWithValidCreds() {
         System.out.println();
         System.out.println("verifyAbilityToLogInWithValidCreds test");
-
         loginPage.fillEmailTextBox(user.getEmail());
-
         loginPage.fillPasswordTextBox(user.getPassword());
-
         loginPage.clickOnSubmitLoginButton();
-
         loginPage.clickOnAccountButton();
-
-
         System.out.println("Check That user profile with Email " + user.getEmail() + " displayed in the list");
         Assert.assertEquals(loginPage.getCurrentLoggedInUserEmail(), user.getEmail(), "Logged in user email isn't equal to: " + user.getEmail());
     }

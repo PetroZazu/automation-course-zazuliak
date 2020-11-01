@@ -4,6 +4,9 @@ import io.ctdev.framework.model.JuiceShopUser;
 import io.ctdev.framework.model.JuiceShopUserBuilder;
 import io.ctdev.framework.pages.signup.SignUpPage;
 import io.ctdev.lesson6.BaseTest;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Story;
 import net.bytebuddy.utility.RandomString;
 
 import org.testng.Assert;
@@ -11,6 +14,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import static io.ctdev.framework.pages.AbstractPage.waitForPageToLoad;
+
+@Epic("SignUp/SignIn")
+@Story("User Account creation")
 
 public class UserSignUpTest extends BaseTest {
     private SignUpPage signUpPage;
@@ -28,7 +34,10 @@ public class UserSignUpTest extends BaseTest {
     }
 
     @Test
+    @Description("Verify that user can create new account")
     public void verifyAbilityToCreateNewAccount() {
+        System.out.println();
+        System.out.println("verifyAbilityToCreateNewAccount test");
         signUpPage.fillEmailField(newUser.getEmail());
         signUpPage.fillPasswordField(newUser.getPassword());
         signUpPage.fillRepeatPasswordField(newUser.getPassword());
