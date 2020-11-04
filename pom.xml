@@ -44,6 +44,7 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
+
             </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
@@ -52,7 +53,9 @@
                 <configuration>
                     <reportVersion>2.4.1</reportVersion>
                     <properties>
-                        <allure.results.directory>C:\Users\petro.zazuliak\IdeaProjects\automation-course-zazuliak\allure-results</allure.results.directory>
+                        <allure.results.directory>
+                            C:\Users\petro.zazuliak\IdeaProjects\automation-course-zazuliak\allure-results
+                        </allure.results.directory>
                     </properties>
                 </configuration>
             </plugin>
@@ -87,6 +90,18 @@
             <version>2.13.6</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>6.7.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>6.8.1</version>
+        </dependency>
+
     </dependencies>
 
 </project>

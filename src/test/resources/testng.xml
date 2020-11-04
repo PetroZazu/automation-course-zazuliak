@@ -1,17 +1,8 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Regression Suite" verbose="1" configfailurepolicy="continue" parallel="none" thread-count="1">
+<suite name="Regression Suite" verbose="1" configfailurepolicy="continue" parallel="true" thread-count="1">
     <test name="Regression Testing">
         <classes>
-            <class name="io.ctdev.lesson6.signup.SignUpPasswordFieldsValidation"/>
-            <class name="io.ctdev.lesson6.signup.SignUpEmailFieldValidation"/>
-            <class name="io.ctdev.lesson6.signup.UserSignUpTest"/>
-
-            <class name="io.ctdev.lesson6.login.PositiveLoginTest"/>
-            <class name="io.ctdev.lesson6.login.NegativeLoginTest"/>
-
-            <class name="io.ctdev.lesson6.products.VerifySoldOutProduct"/>
-            <class name="io.ctdev.lesson6.products.VerifyOneProductInfoInBasket"/>
-            <class name="io.ctdev.lesson6.products.VerifyProductInfoPopUpVsPage"/>
+            <class name="io.ctdev.cucumber.runner.CucumberBaseTest"/>
         </classes>
     </test>
 </suite>
